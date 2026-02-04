@@ -838,3 +838,11 @@ button:focus {
       0 0 35px rgba(138,43,226,0.9),
       0 0 80px rgba(138,43,226,0.6);
 }
+.project-title {
+  font-size: 1.5rem;
+  font-weight: 800;
+  margin-bottom: 5px;
+  background: linear-gradient(90deg, #c770f0, #8a49a8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
