@@ -10,42 +10,7 @@ function Home2() {
     <Container fluid className="home-about-section" id="about">
       <Container>
         <Row>
-          {/* <Col md={8} className="home-about-description">
-            <h1 style={{ fontSize: "2.6em" }}>
-              LET ME <span className="purple"> INTRODUCE </span> MYSELF
-            </h1>
-            <p className="home-about-body">
-              I’m a passionate Software Engineer and Computer Science undergraduate who enjoys turning ideas into efficient, scalable, and real-world solutions. Over time, I’ve explored multiple technologies and developed a strong interest in problem-solving, system design,
-              <br />
-              <br />
-              I’m proficient in
-              <i>
-                <b className="purple">
-                  {" "}
-                   C, C++, JavaScript, Tailwind, React, Express, Node.js, MongoDB,{" "}
-                </b>
-              </i>
-              — and I enjoy working across both backend and frontend stacks.
-              <br />
-              <br />
-              My key areas of interest include developing
-              <i>
-                <b className="purple">
-                  {" "}
-                  Node.js, React.js, and modern web frameworks{" "}
-                </b>
-              </i>
-              and exploring new ways to bridge on-chain and off-chain systems.
-              <br />
-              <br />
-              Whenever possible, I love building projects with
-              <b className="purple"> Node.js </b> and modern frameworks like{" "}
-              <i>
-                <b className="purple">React.js</b> and{" "}
-                <b className="purple">Next.js</b>.
-              </i>
-            </p>
-          </Col> */}
+          
           <Col md={8} className="home-about-description">
             <h1 style={{ fontSize: "2.6em" }}>
               LET ME <span className="purple"> INTRODUCE </span> MYSELF
@@ -83,11 +48,7 @@ function Home2() {
             </p>
           </Col>
 
-          {/* <Col md={4} className="myAvtar">
-            <Tilt>
-              <img src={myimg} className="img-fluid" alt="avatar" />
-            </Tilt>
-          </Col> */}
+         
 
           <Col md={4} className="myAvtar">
             <Tilt tiltMaxAngleX={10} tiltMaxAngleY={10} glareEnable={true} glareMaxOpacity={0.2}>

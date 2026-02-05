@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 import { Container, Row, Button } from "react-bootstrap";
 import Particle from "../Particle";
-// import pdf from "../../Assets/Rajat_Maurya_Resume.pdf";
+
 import { AiOutlineDownload } from "react-icons/ai";
 import { Document, Page, pdfjs } from "react-pdf";
 
@@ -14,7 +14,7 @@ function ResumeNew() {
 
   const [numPages, setNumPages] = useState(null);
   const [width, setWidth] = useState(window.innerWidth);
-  const pdf = "/Rajat_Maurya_Resume.pdf";
+  const pdf = "/Resume.pdf";
 
 
   useEffect(() => {
