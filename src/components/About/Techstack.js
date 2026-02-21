@@ -27,6 +27,8 @@ import Boot from "../../Assets/TechIcons/Bootstrap.svg"
 
 import postman from "../../Assets/TechIcons/Postman.svg"
 
+import Redis from '../../Assets/TechIcons/Reddis.svg'
+
 
 function Techstack() {
   return (
@@ -85,6 +87,11 @@ function Techstack() {
       <Col xs={4} md={2} className="tech-icons">
         <img src={mongo} alt="HTML" />
         <div className="tech-icons-text">MongoDB</div>
+      </Col>
+
+       <Col xs={4} md={2} className="tech-icons">
+        <img src={Redis} alt="HTML" />
+        <div className="tech-icons-text">Redis</div>
       </Col>
 
       <Col xs={4} md={2} className="tech-icons">

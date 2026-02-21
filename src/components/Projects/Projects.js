@@ -24,8 +24,8 @@ function Projects() {
             <ProjectCard
               imgPath={bitsOfCode}
               isBlog={false}
-              title="Next-Gen AI Blogging Platform"
-              description = "Developing an AI-powered full-stack blog platform using the MERN stack that enables one-click blog summarization and AI-driven content/report generation for admins. Implements secure OTP and Google authentication, protected routes, and scalable REST APIs. Focused on delivering a responsive, production-ready application."
+              title="Postify - AI Powered Blogging Platform"
+              description = "Building a production-grade AI-powered blogging platform with React, Node, Express, and MongoDB that supports one-click summaries and AI-assisted content/report creation for admins. Includes secure OTP and Google sign-in, guarded routes, and scalable REST services. Focused on shipping a responsive product."
 
               ghLink="https://github.com/rajatmaurya-cs/Postify-AI-Powered-Blogging-Platform"
               

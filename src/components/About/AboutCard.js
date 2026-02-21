@@ -30,7 +30,7 @@ function AboutCard() {
       <ImPointRight /> Solving DSA & LeetCode problems 💻
     </li>
     <li className="about-activity">
-      <ImPointRight /> Building full-stack projects 🚀
+      <ImPointRight /> Building full-stack AI Integrated Web Application 🚀
     </li>
     <li className="about-activity">
       <ImPointRight /> Exploring new technologies 🧠
