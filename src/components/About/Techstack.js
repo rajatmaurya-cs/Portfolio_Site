@@ -48,6 +48,23 @@ function Techstack() {
       </Col>
 
 
+       <Col xs={4} md={2} className="tech-icons">
+        <img src={"https://skillicons.dev/icons?i=java&theme=light"} alt="CPP" />
+        <div className="tech-icons-text">java</div>
+      </Col>
+
+
+        <Col xs={4} md={2} className="tech-icons">
+        <img src={"https://skillicons.dev/icons?i=python&theme=dark"} alt="CPP" />
+        <div className="tech-icons-text">Python</div>
+      </Col>
+
+       <Col xs={4} md={2} className="tech-icons">
+        <img src={"https://skillicons.dev/icons?i=dart&theme=dark"} alt="CPP" />
+        <div className="tech-icons-text">Dart</div>
+      </Col>
+
+
 
       <Col xs={4} md={2} className="tech-icons">
         <img src={HTML} alt="HTML" />
@@ -75,7 +92,7 @@ function Techstack() {
       </Col>
 
       <Col xs={4} md={2} className="tech-icons">
-        <img src={express} alt="HTML" />
+        <img src={"https://skillicons.dev/icons?i=express&theme=dark"} alt="HTML" />
         <div className="tech-icons-text">Express</div>
       </Col>
 
@@ -93,25 +110,6 @@ function Techstack() {
         <img src={Redis} alt="HTML" />
         <div className="tech-icons-text">Redis</div>
       </Col>
-
-      <Col xs={4} md={2} className="tech-icons">
-        <img src={postman} alt="HTML" />
-        <div className="tech-icons-text">Postman</div>
-      </Col>
-
-      <Col xs={4} md={2} className="tech-icons">
-        <img src={git} alt="HTML" />
-        <div className="tech-icons-text">Git</div>
-      </Col>
-
-      <Col xs={4} md={2} className="tech-icons">
-        <img src={github} alt="HTML" />
-        <div className="tech-icons-text">GitHub</div>
-      </Col>
-
-
-      
-
      
     </Row>
   );

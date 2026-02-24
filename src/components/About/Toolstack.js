@@ -8,6 +8,21 @@ import intelliJ from "../../Assets/TechIcons/intellij-idea.svg";
 function Toolstack() {
   return (
     <Row style={{ justifyContent: "center", paddingBottom: "50px" }}>
+
+    
+
+      <Col xs={4} md={2} className="tech-icons">
+        <img src={"https://skillicons.dev/icons?i=git&theme=dark"} alt="macOs" className="tech-icon-images" />
+        <div className="tech-icons-text">Git</div>
+      </Col>
+
+      <Col xs={4} md={2} className="tech-icons">
+        <img src={"https://skillicons.dev/icons?i=github&theme=dark"} alt="macOs" className="tech-icon-images" />
+        <div className="tech-icons-text">GitHub</div>
+      </Col>
+
+      
+
       <Col xs={4} md={2} className="tech-icons">
         <img src={macOs} alt="macOs" className="tech-icon-images" />
         <div className="tech-icons-text">Mac Os</div>
@@ -24,6 +39,17 @@ function Toolstack() {
       <Col xs={4} md={2} className="tech-icons ">
         <img src={intelliJ} alt="go" className="tech-icon-images" />
         <div className="tech-icons-text">IntelliJ</div>
+      </Col>
+
+
+        <Col xs={4} md={2} className="tech-icons">
+        <img src={"https://skillicons.dev/icons?i=postman&theme=dark"} alt="HTML" />
+        <div className="tech-icons-text">Postman</div>
+      </Col>
+
+        <Col xs={4} md={2} className="tech-icons">
+        <img src={"https://skillicons.dev/icons?i=vercel&theme=dark"} alt="HTML" />
+        <div className="tech-icons-text">Vercel</div>
       </Col>
     </Row>
   );
