@@ -11,21 +11,13 @@ import css from "../../Assets/TechIcons/CSS3.svg"
 
 import react from "../../Assets/TechIcons/React.svg"
 
-import express from "../../Assets/TechIcons/Express.svg"
-
 import nodejs from "../../Assets/TechIcons/Node.js.svg"
 
 import javascript from "../../Assets/TechIcons/JavaScript.svg"
 
 import mongo from "../../Assets/TechIcons/MongoDB.svg"
 
-import git from "../../Assets/TechIcons/Git.svg"
-
-import github from "../../Assets/TechIcons/Github-Light.svg"
-
 import Boot from "../../Assets/TechIcons/Bootstrap.svg"
-
-import postman from "../../Assets/TechIcons/Postman.svg"
 
 import Redis from '../../Assets/TechIcons/Reddis.svg'
 
