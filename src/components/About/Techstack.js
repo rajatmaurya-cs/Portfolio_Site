@@ -73,7 +73,7 @@ function Techstack() {
       </Col>
 
       <Col xs={4} md={2} className="tech-icons">
-        <img src={"https://skillicons.dev/icons?i=express&theme=dark"} alt="HTML" />
+        <img src={"https://skillicons.dev/icons?i=express&theme=light"} alt="HTML" />
         <div className="tech-icons-text">Express</div>
       </Col>
 
