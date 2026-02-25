@@ -47,25 +47,6 @@ function Techstack() {
         <div className="tech-icons-text">C++</div>
       </Col>
 
-
-       <Col xs={4} md={2} className="tech-icons">
-        <img src={"https://skillicons.dev/icons?i=java&theme=light"} alt="CPP" />
-        <div className="tech-icons-text">java</div>
-      </Col>
-
-
-        <Col xs={4} md={2} className="tech-icons">
-        <img src={"https://skillicons.dev/icons?i=python&theme=dark"} alt="CPP" />
-        <div className="tech-icons-text">Python</div>
-      </Col>
-
-       <Col xs={4} md={2} className="tech-icons">
-        <img src={"https://skillicons.dev/icons?i=dart&theme=dark"} alt="CPP" />
-        <div className="tech-icons-text">Dart</div>
-      </Col>
-
-
-
       <Col xs={4} md={2} className="tech-icons">
         <img src={HTML} alt="HTML" />
         <div className="tech-icons-text">HTML</div>
