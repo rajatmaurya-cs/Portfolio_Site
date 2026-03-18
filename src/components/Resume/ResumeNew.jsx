@@ -74,7 +74,7 @@ function ResumeNew() {
         )}
         {loadError && (
           <p style={{ color: "#ffb3b3", marginTop: "12px", textAlign: "center" }}>
-            Failed to load resume preview. Please use the download button.
+            Failed to load resume preview. Please use the download Button.
           </p>
         )}
       </Row>
