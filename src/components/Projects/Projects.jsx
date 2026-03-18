@@ -1,3 +1,4 @@
+
 import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import ProjectCard from "./ProjectCards";
@@ -32,14 +33,29 @@ function Projects() {
             />
           </Col>
 
+          
+
+
             <Col md={4} className="project-card">
             <ProjectCard
               imgPath={bitsOfCode}
               isBlog={false}
-              title="portfolio"
-              description = "Developed a responsive personal portfolio using React, JavaScript, HTML, and CSS to showcase projects, skills, and achievements. Implemented reusable components, intuitive navigation, and performance optimization. Deployed a production-ready website with integrated GitHub, LinkedIn, and resume access to enhance recruiter engagement."
+              title="AI auto category & Tag Generator "
+              description = "Built an AI-driven auto category and tag generation system that analyzes content context to automatically assign relevant categories and tags. Integrated machine learning APIs, optimized data processing pipelines, and designed a responsive UI for real-time interaction, improving content discoverability and system efficiency."
 
-              ghLink="https://github.com/rajatmaurya-cs/Postify-AI-Powered-Blogging-Platform"
+              ghLink="https://github.com/rajatmaurya-cs/ai-auto-category-tag-generator"
+              
+            />
+          </Col>
+
+           <Col md={4} className="project-card">
+            <ProjectCard
+              imgPath={bitsOfCode}
+              isBlog={false}
+              title="AI B2b Proposal Generator "
+              description = "Built an AI-driven B2B proposal generation system that dynamically creates personalized business proposals using contextual input and NLP models. Implemented intelligent content structuring, template automation, and real-time data processing, significantly reducing proposal creation time and enhancing business productivity."
+
+              ghLink="https://github.com/rajatmaurya-cs/ai-auto-category-tag-generator"
               
             />
           </Col>

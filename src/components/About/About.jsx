@@ -36,18 +36,21 @@ function About() {
               <img src={laptopImg} alt="about" className="img-fluid" />
             </Col>
           </Row>
-          <h1 className="project-heading">
-            Professional <strong className="purple">Skillset </strong>
-          </h1>
+          <div className="orbits-row">
+            <div className="orbit-col">
+              <h1 className="project-heading">
+                Professional <strong className="purple">Skillset</strong>
+              </h1>
+              <Techstack />
+            </div>
 
-          <Techstack />
-
-          <h1 className="project-heading">
-            <strong className="purple">Tools</strong> I use
-          </h1>
-          <Toolstack />
-
-         
+            <div className="orbit-col">
+              <h1 className="project-heading">
+                <strong className="purple">Tools</strong> I use
+              </h1>
+              <Toolstack />
+            </div>
+          </div>
         </Container>
       </Container>
     </>

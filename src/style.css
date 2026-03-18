@@ -85,6 +85,7 @@ button:focus {
   transition: all 0.3s ease-out 0s !important;
   box-shadow: 0px 10px 10px 0px rgba(9, 5, 29, 0.171) !important;
   backdrop-filter: blur(15px) !important;
+  z-index: 1000 !important;
 }
 
 .navbar {
@@ -92,6 +93,7 @@ button:focus {
   transition: all 0.3s ease-out 0s !important;
   padding: 0.3rem 2rem !important;
   font-size: 1.2rem !important;
+  z-index: 1000 !important;
 }
 
 .navbar-toggler {
@@ -409,8 +411,8 @@ button:focus {
 .footer {
   background-color: rgb(10, 4, 22);
   bottom: 0 !important;
-  padding-top: 10px !important;
-  padding-bottom: 8px !important ;
+  padding-top: 6px !important;
+  padding-bottom: 5px !important ;
 }
 .footer-copywright {
   text-align: center !important;
@@ -432,14 +434,14 @@ button:focus {
 }
 
 .footer h3 {
-  font-size: 1em;
+  font-size: 0.9em;
   color: white !important;
-  margin-top: 0.5em !important;
-  margin-bottom: 0.5em !important;
+  margin-top: 0.3em !important;
+  margin-bottom: 0.3em !important;
 }
 .footer-icons {
-  margin-top: 0.5em !important;
-  margin-bottom: 0.5em !important;
+  margin-top: 0.25em !important;
+  margin-bottom: 0.25em !important;
   padding: 0 !important;
 }
 
@@ -814,8 +816,57 @@ button:focus {
   align-items: center;
 }
 
+.profile-orbit-wrap {
+  position: relative;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  padding: 14px;
+  border-radius: 50%;
+  isolation: isolate;
+}
+
+.profile-orbit-wrap::before,
+.profile-orbit-wrap::after {
+  content: "";
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.profile-orbit-wrap::before {
+  z-index: 0;
+  border: 8px solid transparent;
+  background: conic-gradient(
+      from 0deg,
+      rgba(199, 112, 240, 0.25),
+      rgba(199, 112, 240, 0.95),
+      rgba(138, 73, 168, 0.3),
+      rgba(199, 112, 240, 0.95),
+      rgba(199, 112, 240, 0.25)
+    ) border-box;
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  animation: profileOrbitSpin 7.5s linear infinite;
+}
+
+.profile-orbit-wrap::after {
+  z-index: 1;
+  border: 2px solid rgba(199, 112, 240, 0.45);
+  box-shadow:
+    0 0 18px rgba(199, 112, 240, 0.65),
+    0 0 34px rgba(109, 32, 197, 0.45);
+  animation: profileOrbitPulse 2.4s ease-in-out infinite;
+}
+
 /* MAIN IMAGE STYLE */
 .profile-img{
+  position: relative;
+  z-index: 2;
   width: 260px;
   height: 260px;
   object-fit: cover;
@@ -838,6 +889,27 @@ button:focus {
       0 0 35px rgba(138,43,226,0.9),
       0 0 80px rgba(138,43,226,0.6);
 }
+
+@keyframes profileOrbitSpin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes profileOrbitPulse {
+  0%,
+  100% {
+    opacity: 0.55;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.03);
+  }
+}
 .project-title {
   font-size: 1.5rem;
   font-weight: 800;
@@ -847,4 +919,162 @@ button:focus {
   -webkit-text-fill-color: transparent;
 }
 
+/* --------- */
+/* Skills / Tools Orbit */
+/* --------- */
+
+@keyframes orbit-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes counter-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(-360deg); }
+}
+
+.skills-orbit-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px 0 40px;
+}
+
+.skills-orbit-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.skills-orbit-hub {
+  position: absolute;
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #6d20c5, #c770f0);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  box-shadow: 0 0 30px rgba(199, 112, 240, 0.45);
+  z-index: 2;
+}
+
+.skills-orbit-ring {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 1px dashed rgba(199, 112, 240, 0.35);
+  animation: orbit-spin 22s linear infinite;
+}
+
+.skills-orbit-item {
+  position: absolute;
+  transform: translate(-50%, -50%);
+}
+
+.skills-orbit-icon-wrap {
+  position: relative;
+  animation: counter-spin 22s linear infinite;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.skills-orbit-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: rgba(20, 10, 40, 0.85);
+  backdrop-filter: blur(6px);
+  border: 1.5px solid rgba(199, 112, 240, 0.5);
+  box-shadow: 0 4px 18px rgba(109, 32, 197, 0.3);
+  font-size: 1.6rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.skills-orbit-icon:hover {
+  transform: scale(1.25);
+  box-shadow: 0 0 22px rgba(199, 112, 240, 0.6);
+}
+
+.skills-orbit-tooltip {
+  position: absolute;
+  left: 58px;
+  top: 50%;
+  transform: translateY(-50%);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+  background: rgba(20, 10, 40, 0.92);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(199, 112, 240, 0.4);
+  border-radius: 10px;
+  padding: 8px 12px;
+  width: 148px;
+  z-index: 10;
+  white-space: nowrap;
+}
+
+.skills-orbit-icon-wrap:hover .skills-orbit-tooltip {
+  opacity: 1;
+}
+
+.skills-orbit-tooltip-name {
+  margin: 0 0 3px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #e2c8f9;
+}
+
+.skills-orbit-tooltip-desc {
+  margin: 0;
+  font-size: 0.72rem;
+  color: #a07bbf;
+  white-space: normal;
+}
+
+/* --------- */
+/* Side-by-side orbits row */
+/* --------- */
+.orbits-row {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 24px;
+}
+
+.orbit-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+@media (max-width: 1100px) {
+  .orbits-row {
+    flex-wrap: wrap;
+  }
+
+  .orbit-col {
+    flex: 1 1 100%;
+  }
+}
+
+@media (max-width: 600px) {
+  .skills-orbit-wrapper {
+    transform: scale(0.72);
+    transform-origin: center center;
+  }
+}
 

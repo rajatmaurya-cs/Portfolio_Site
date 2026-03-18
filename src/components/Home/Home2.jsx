@@ -51,7 +51,7 @@ function Home2() {
          
 
           <Col md={4} className="myAvtar">
-            <Tilt tiltMaxAngleX={10} tiltMaxAngleY={10} glareEnable={true} glareMaxOpacity={0.2}>
+            <Tilt className="profile-orbit-wrap" tiltMaxAngleX={10} tiltMaxAngleY={10} glareEnable={true} glareMaxOpacity={0.2}>
               <img src={myimg} className="img-fluid profile-img" alt="avatar" />
             </Tilt>
           </Col>
