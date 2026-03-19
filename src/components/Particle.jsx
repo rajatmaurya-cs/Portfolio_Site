@@ -5,6 +5,7 @@ function Particle() {
   return (
     <Particles
       id="tsparticles"
+      className="fixed inset-0 -z-10 h-full w-full bg-cover bg-no-repeat"
       params={{
         particles: {
           number: {

@@ -1,46 +1,49 @@
 import React from "react";
-import Card from "react-bootstrap/Card";
-import Button from "react-bootstrap/Button";
 import { CgWebsite } from "react-icons/cg";
 import { BsGithub } from "react-icons/bs";
 
 function ProjectCards(props) {
   return (
-    <Card className="project-card-view">
-      <Card.Img variant="top" src={props.imgPath} alt="card-img" />
-      <Card.Body>
+    <article className="h-full rounded-lg bg-transparent text-white opacity-90 shadow-[0_4px_5px_3px_rgba(119,53,136,0.459)] transition-all duration-500 hover:scale-[1.02] hover:overflow-hidden hover:shadow-[0_4px_4px_5px_rgba(129,72,144,0.561)]">
+      <img
+        src={props.imgPath}
+        alt="card-img"
+        className="rounded-[10px] p-5 opacity-80"
+      />
+      <div className="p-4">
 
-        {/* <Card.Title>{props.title}</Card.Title> */}
-
-        <Card.Title className="project-title">
+        <h3 className="mb-[5px] bg-gradient-to-r from-[#c770f0] to-[#8a49a8] bg-clip-text text-[1.5rem] font-extrabold text-transparent">
           {props.title}
-        </Card.Title>
+        </h3>
 
-        <Card.Text style={{ textAlign: "left" }}>
+        <p className="text-left">
           {props.description}
-        </Card.Text>
-        <Button variant="primary" href={props.ghLink} target="_blank">
+        </p>
+        <a
+          href={props.ghLink}
+          target="_blank"
+          rel="noreferrer"
+          className="inline-flex items-center rounded-md border border-[#623686] bg-[#623686] px-4 py-2 text-white transition hover:border-[#6d20c5d7] hover:bg-[#6d20c5d7]"
+        >
           <BsGithub /> &nbsp;
           {props.isBlog ? "Blog" : "GitHub"}
-        </Button>
-        {"\n"}
-        {"\n"}
+        </a>
 
 
 
         {!props.isBlog && props.demoLink && (
-          <Button
-            variant="primary"
+          <a
             href={props.demoLink}
             target="_blank"
-            style={{ marginLeft: "10px" }}
+            rel="noreferrer"
+            className="ml-[10px] inline-flex items-center rounded-md border border-[#623686] bg-[#623686] px-4 py-2 text-white transition hover:border-[#6d20c5d7] hover:bg-[#6d20c5d7]"
           >
             <CgWebsite /> &nbsp;
             {"Demo"}
-          </Button>
+          </a>
         )}
-      </Card.Body>
-    </Card>
+      </div>
+    </article>
   );
 }
 export default ProjectCards;

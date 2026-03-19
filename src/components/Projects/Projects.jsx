@@ -1,6 +1,5 @@
 
 import React from "react";
-import { Container, Row, Col } from "react-bootstrap";
 import ProjectCard from "./ProjectCards";
 import Particle from "../Particle";
 
@@ -8,20 +7,20 @@ import bitsOfCode from "../../Assets/Projects/blog.png";
 
 function Projects() {
   return (
-    <Container fluid className="project-section">
+    <div className="relative bg-[linear-gradient(to_bottom_left,rgba(17,16,16,0.582),rgba(12,8,24,0.904))] pb-[30px] pt-[150px]">
       <Particle />
-      <Container>
-        <h1 className="project-heading">
-          My Recent <strong className="purple">Works </strong>
+      <div className="mx-auto max-w-6xl px-4">
+        <h1 className="pb-[10px] pt-[10px] text-[2.3em] font-medium text-white">
+          My Recent <strong className="text-[#c770f0]">Works </strong>
         </h1>
-        <p style={{ color: "white" }}>
+        <p className="text-white">
           Here are a few projects I've worked on recently.
         </p>
-        <Row style={{ justifyContent: "center", paddingBottom: "10px" }}>
+        <div className="grid justify-center gap-4 pb-[10px] md:grid-cols-2 lg:grid-cols-3">
 
          
 
-          <Col md={4} className="project-card">
+          <div className="h-auto px-[25px] pb-[50px] pt-[50px]">
             <ProjectCard
               imgPath={bitsOfCode}
               isBlog={false}
@@ -31,12 +30,9 @@ function Projects() {
               ghLink="https://github.com/rajatmaurya-cs/Postify-AI-Powered-Blogging-Platform"
               
             />
-          </Col>
+          </div>
 
-          
-
-
-            <Col md={4} className="project-card">
+                    <div className="h-auto px-[25px] pb-[50px] pt-[50px]">
             <ProjectCard
               imgPath={bitsOfCode}
               isBlog={false}
@@ -46,9 +42,9 @@ function Projects() {
               ghLink="https://github.com/rajatmaurya-cs/ai-auto-category-tag-generator"
               
             />
-          </Col>
+          </div>
 
-           <Col md={4} className="project-card">
+          <div className="h-auto px-[25px] pb-[50px] pt-[50px]">
             <ProjectCard
               imgPath={bitsOfCode}
               isBlog={false}
@@ -58,12 +54,12 @@ function Projects() {
               ghLink="https://github.com/rajatmaurya-cs/ai-auto-category-tag-generator"
               
             />
-          </Col>
+          </div>
 
         
-        </Row>
-      </Container>
-    </Container>
+        </div>
+      </div>
+    </div>
   );
 }
 

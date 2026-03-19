@@ -1,5 +1,4 @@
 import React from "react";
-import { Container, Row, Col } from "react-bootstrap";
 import {
   AiFillGithub,
   
@@ -11,20 +10,20 @@ function Footer() {
   let date = new Date();
   let year = date.getFullYear();
   return (
-    <Container fluid className="footer">
-      <Row>
-        <Col md="4" className="footer-copywright">
-          <h3>Designed and Developed by Rajat Maurya</h3>
-        </Col>
-        <Col md="4" className="footer-copywright">
-          <h3>Copyright © {year} RM</h3>
-        </Col>
-        <Col md="4" className="footer-body">
-          <ul className="footer-icons">
-            <li className="social-icons">
+    <footer className="fixed bottom-0 left-0 w-full bg-[rgb(10,4,22)] pb-[5px] pt-[6px]">
+      <div className="mx-auto grid max-w-6xl gap-3 px-4 text-center md:grid-cols-3 md:items-center">
+        <div className="text-center">
+          <h3 className="my-[0.3em] text-[0.9em] text-white">Designed and Developed by Rajat Maurya</h3>
+        </div>
+        <div className="text-center">
+          <h3 className="my-[0.3em] text-[0.9em] text-white">Copyright © {year} RM</h3>
+        </div>
+        <div className="z-[1] text-center">
+          <ul className="my-1 p-0">
+            <li className="inline-block px-[15px]">
               <a
                 href="https://github.com/rajatmaurya-cs"
-                style={{ color: "white" }}
+                className="text-white"
                 target="_blank" 
                 rel="noopener noreferrer"
               >
@@ -34,10 +33,10 @@ function Footer() {
 
           
 
-            <li className="social-icons">
+            <li className="inline-block px-[15px]">
               <a
                 href="https://www.linkedin.com/in/rajat-maurya-3a172331b/"
-                style={{ color: "white" }}
+                className="text-white"
                 target="_blank" 
                 rel="noopener noreferrer"
               >
@@ -46,9 +45,9 @@ function Footer() {
             </li>
          
           </ul>
-        </Col>
-      </Row>
-    </Container>
+        </div>
+      </div>
+    </footer>
   );
 }
 

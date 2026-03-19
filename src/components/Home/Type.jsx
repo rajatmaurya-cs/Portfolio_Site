@@ -15,6 +15,9 @@ function Type() {
         autoStart: true,
         loop: true,
         deleteSpeed: 50,
+        wrapperClassName:
+          "text-[1.4em] font-medium text-[#be6adf] md:text-[2.2em] md:font-semibold",
+        cursorClassName: "hidden text-[2.4em] text-[#b562d6] md:inline",
       }}
     />
   );
