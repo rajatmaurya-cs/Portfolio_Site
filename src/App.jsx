@@ -28,7 +28,7 @@ function App() {
   return (
     <Router>
       <Preloader load={load} />
-      <div className={load ? "h-screen overflow-hidden text-center" : "text-center"}>
+      <div className={load ? "h-screen overflow-hidden text-center pb-16" : "text-center pb-16"}>
         <Navbar />
         <ScrollToTop />
         <Routes>

@@ -1,4 +1,3 @@
-
 import React from "react";
 import homeLogo from "../../Assets/home-main.svg";
 import Particle from "../Particle";
