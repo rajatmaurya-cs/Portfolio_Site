@@ -3,11 +3,13 @@ import React from "react";
 import ProjectCard from "./ProjectCards";
 import Particle from "../Particle";
 
+import GithubCard from "../../../components/github";
+
 import bitsOfCode from "../../Assets/Projects/blog.png";
 
 function Projects() {
   return (
-    <div className="relative bg-[linear-gradient(to_bottom_left,rgba(17,16,16,0.582),rgba(12,8,24,0.904))] pb-[30px] pt-[150px]">
+    <div className="relative pb-[30px] pt-[60px] md:pt-[100px]">
       <Particle />
       <div className="mx-auto max-w-6xl px-4">
         <h1 className="pb-[10px] pt-[10px] text-[2.3em] font-medium text-white">
@@ -16,48 +18,40 @@ function Projects() {
         <p className="text-white">
           Here are a few projects I've worked on recently.
         </p>
-        <div className="grid justify-center gap-4 pb-[10px] md:grid-cols-2 lg:grid-cols-3">
 
-         
-
-          <div className="h-auto px-[25px] pb-[50px] pt-[50px]">
-            <ProjectCard
-              imgPath={bitsOfCode}
-              isBlog={false}
-              title="Postify - AI Powered Blogging Platform"
-              description = "Building a production-grade AI-powered blogging platform with React, Node, Express, and MongoDB that supports one-click summaries and AI-assisted content/report creation for admins. Includes secure OTP and Google sign-in, guarded routes, and scalable REST services. Focused on shipping a responsive product."
-
-              ghLink="https://github.com/rajatmaurya-cs/Postify-AI-Powered-Blogging-Platform"
-              
-            />
-          </div>
-
-                    <div className="h-auto px-[25px] pb-[50px] pt-[50px]">
-            <ProjectCard
-              imgPath={bitsOfCode}
-              isBlog={false}
-              title="AI auto category & Tag Generator "
-              description = "Built an AI-driven auto category and tag generation system that analyzes content context to automatically assign relevant categories and tags. Integrated machine learning APIs, optimized data processing pipelines, and designed a responsive UI for real-time interaction, improving content discoverability and system efficiency."
-
-              ghLink="https://github.com/rajatmaurya-cs/ai-auto-category-tag-generator"
-              
-            />
-          </div>
-
-          <div className="h-auto px-[25px] pb-[50px] pt-[50px]">
-            <ProjectCard
-              imgPath={bitsOfCode}
-              isBlog={false}
-              title="AI B2b Proposal Generator "
-              description = "Built an AI-driven B2B proposal generation system that dynamically creates personalized business proposals using contextual input and NLP models. Implemented intelligent content structuring, template automation, and real-time data processing, significantly reducing proposal creation time and enhancing business productivity."
-
-              ghLink="https://github.com/rajatmaurya-cs/ai-auto-category-tag-generator"
-              
-            />
-          </div>
-
-        
+        {/* Placing Github Component at the top for better visibility */}
+        <div className="mt-8 flex w-full justify-center pb-8 pt-4">
+          <GithubCard />
         </div>
+
+        <div className="grid gap-6 pb-10 pt-4 md:grid-cols-2 lg:grid-cols-3">
+
+          <ProjectCard
+            imgPath={bitsOfCode}
+            isBlog={false}
+            title="Veyra - The Home For Modern creators"
+            description="VEYRA is an AI-powered creator platform that enables creators to write, publish, and manage blogs through a modern, scalable dashboard. It features AI-assisted content generation, rich-text editing, secure authentication, and personalized analytics for followers, likes, comments, drafts, and published blogs. Built with Next.js, TypeScript, Node.js, Express.js, MongoDB, Redis, and Tailwind CSS, the platform leverages Redis caching, React Query, and performance optimizations to deliver a fast, secure, and seamless user experience."
+            ghLink="https://github.com/rajatmaurya-cs/Veyra-creator-platform"
+          />
+
+          <ProjectCard
+            imgPath={bitsOfCode}
+            isBlog={false}
+            title="AI Auto Category & Tag Generator"
+            description="Built an AI-driven auto category and tag generation system that analyzes content context to automatically assign relevant categories and tags. Integrated machine learning APIs, optimized data processing pipelines, and designed a responsive UI for real-time interaction, improving content discoverability and system efficiency."
+            ghLink="https://github.com/rajatmaurya-cs/ai-auto-category-tag-generator"
+          />
+
+          <ProjectCard
+            imgPath={bitsOfCode}
+            isBlog={false}
+            title="AI B2B Proposal Generator"
+            description="Built an AI-driven B2B proposal generation system that dynamically creates personalized business proposals using contextual input and NLP models. Implemented intelligent content structuring, template automation, and real-time data processing, significantly reducing proposal creation time and enhancing business productivity."
+            ghLink="https://github.com/rajatmaurya-cs/ai-auto-category-tag-generator"
+          />
+
+        </div>
+
       </div>
     </div>
   );

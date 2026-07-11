@@ -13,6 +13,8 @@ import {
   SiRedis,
   SiC,
   SiCplusplus,
+    SiNextdotjs,
+  SiTypescript,
 } from "react-icons/si";
 
 const skills = [
@@ -21,7 +23,9 @@ const skills = [
   { icon: <FaHtml5 />,      color: "#e34f26", name: "HTML",       desc: "Structure of web pages." },
   { icon: <FaCss3Alt />,    color: "#264de4", name: "CSS",        desc: "Styling and layout." },
   { icon: <SiJavascript />, color: "#f7df1e", name: "JavaScript", desc: "Core web language." },
+  { icon: <SiTypescript />, color: "#3178C6", name: "TypeScript", desc: "Typed JavaScript for scalable applications." },
   { icon: <FaReact />,      color: "#61dafb", name: "React",      desc: "Component-based UI." },
+  { icon: <SiNextdotjs />,  color: "#ffffff", name: "Next.js",    desc: "React framework for full-stack web applications." },
   { icon: <SiBootstrap />,  color: "#7952b3", name: "Bootstrap",  desc: "Responsive UI framework." },
   { icon: <SiExpress />,    color: "#aaaaaa", name: "Express",    desc: "Backend framework." },
   { icon: <FaNodeJs />,     color: "#3c873a", name: "Node.js",    desc: "Backend runtime." },

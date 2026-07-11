@@ -10,17 +10,17 @@ function About() {
   return (
     <>
       <Particle />
-      <div className="relative overflow-x-clip pb-[30px] pt-[150px] text-white">
+      <div className="relative overflow-x-clip pb-[30px] pt-[60px] md:pt-[100px] text-white">
         <div className="mx-auto max-w-6xl px-4">
           <div className="grid items-center justify-center gap-6 p-[10px] md:grid-cols-12">
-            <div className="pb-[50px] pt-[30px] md:col-span-7">
+            <div className="pb-[50px] pt-0 md:col-span-7">
               <h1 className="pb-5 text-[2.1em]">
                 Know Who <strong className="text-[#c770f0]">I'M</strong>
               </h1>
               <Aboutcard />
             </div>
-            <div className="pb-[50px] pt-[120px] md:col-span-5 md:pt-[120px]">
-              <img src={laptopImg} alt="about" className="h-auto w-full" />
+            <div className="pb-[50px] pt-0 md:col-span-5">
+              <img src={laptopImg.src || laptopImg} alt="about" className="h-auto w-full" />
             </div>
           </div>
 

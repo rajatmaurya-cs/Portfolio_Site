@@ -4,15 +4,14 @@ import Particle from "../Particle";
 
 import { AiOutlineDownload } from "react-icons/ai";
 import { Document, Page, pdfjs } from "react-pdf";
-import pdfWorker from "pdfjs-dist/build/pdf.worker.min.mjs?url";
 
 // Worker setup (VERY IMPORTANT)
-pdfjs.GlobalWorkerOptions.workerSrc = pdfWorker;
+pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`;
 
 function ResumeNew() {
 
   const [numPages, setNumPages] = useState(null);
-  const [width, setWidth] = useState(window.innerWidth);
+  const [width, setWidth] = useState(1200);
   const [loadError, setLoadError] = useState(false);
   const pdf = "/Resume.pdf";
   const previewHeight =
@@ -20,6 +19,7 @@ function ResumeNew() {
 
 
   useEffect(() => {
+    setWidth(window.innerWidth);
     const handleResize = () => setWidth(window.innerWidth);
     window.addEventListener("resize", handleResize);
 
@@ -32,7 +32,7 @@ function ResumeNew() {
   }
 
   return (
-    <div className="relative bg-[linear-gradient(to_bottom_left,rgba(17,16,16,0.582),rgba(12,8,24,0.904))] pb-[30px] pt-[110px] text-white">
+    <div className="relative pb-[30px] pt-[60px] md:pt-[100px] text-white">
 
       <Particle />
 

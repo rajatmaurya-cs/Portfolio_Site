@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 
 import {
   
@@ -67,22 +67,22 @@ function NavBar() {
           }`}
         >
           <li className="md:ml-5">
-            <Link to="/" onClick={() => updateExpanded(false)} className={navLinkClass}>
+            <Link href="/" onClick={() => updateExpanded(false)} className={navLinkClass}>
               <AiOutlineHome className="mb-[2px] inline-block" /> Home
             </Link>
           </li>
           <li className="md:ml-5">
-            <Link to="/about" onClick={() => updateExpanded(false)} className={navLinkClass}>
+            <Link href="/about" onClick={() => updateExpanded(false)} className={navLinkClass}>
               <AiOutlineUser className="mb-[2px] inline-block" /> About
             </Link>
           </li>
           <li className="md:ml-5">
-            <Link to="/project" onClick={() => updateExpanded(false)} className={navLinkClass}>
+            <Link href="/project" onClick={() => updateExpanded(false)} className={navLinkClass}>
               <AiOutlineFundProjectionScreen className="mb-[2px] inline-block" /> Projects
             </Link>
           </li>
           <li className="md:ml-5">
-            <Link to="/resume" onClick={() => updateExpanded(false)} className={navLinkClass}>
+            <Link href="/resume" onClick={() => updateExpanded(false)} className={navLinkClass}>
               <CgFileDocument className="mb-[2px] inline-block" /> Resume
             </Link>
           </li>
