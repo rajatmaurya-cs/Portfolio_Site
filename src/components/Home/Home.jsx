@@ -68,9 +68,9 @@ function Home() {
 
           {/* Heading */}
           <h2 style={{ fontSize: "clamp(1.6rem, 4vw, 2.5rem)", fontWeight: 800, color: "white", marginBottom: "12px", lineHeight: 1.2 }}>
-            Take a{" "}
+            Take{" "}
             <span style={{ background: "linear-gradient(135deg, #cd5ff8, #7b2fff)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>
-              Ticket Tour
+              Quick tour Ticket
             </span>
           </h2>
 
