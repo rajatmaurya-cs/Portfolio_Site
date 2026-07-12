@@ -27,12 +27,12 @@ function Home() {
         <div className="mx-auto max-w-6xl px-4 pb-8 pt-8 md:pt-12 text-left text-[whitesmoke]">
           <div className="grid items-center gap-8 md:grid-cols-12">
             <div className="pt-2 md:pt-0 md:col-span-7">
-              <h1 className="pb-4 pl-0 text-[2.4em] sm:pl-[50px] flex flex-wrap items-center">
+              <h1 className="pb-4 pl-0 text-[1.8em] sm:text-[2.4em] sm:pl-[50px] flex flex-wrap items-center">
                 Hi There!{" "}
                 <Loader />
               </h1>
 
-              <h1 className="pl-0 text-[2.5em] sm:pl-[45px]">
+              <h1 className="pl-0 text-[2em] sm:text-[2.5em] sm:pl-[45px]">
                 I'M
                 <strong className="text-[#cd5ff8]"> Rajat Maurya</strong>
               </h1>

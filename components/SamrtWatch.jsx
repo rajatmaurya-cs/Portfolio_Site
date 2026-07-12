@@ -195,12 +195,20 @@ const StyledWrapper = styled.div`
   @media (max-width: 480px) {
     .pro-watch-experience .watch-assembly {
       transform: scale(0.8);
+      margin-left: -38px;
+      margin-right: -38px;
+      margin-top: -46px;
+      margin-bottom: -46px;
     }
   }
 
   @media (max-width: 380px) {
     .pro-watch-experience .watch-assembly {
       transform: scale(0.65);
+      margin-left: -66px;
+      margin-right: -66px;
+      margin-top: -80px;
+      margin-bottom: -80px;
     }
   }
 
