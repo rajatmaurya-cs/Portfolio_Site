@@ -215,7 +215,8 @@ const ledBlink = keyframes`
 const StyledWrapper = styled.div`
   .machine {
     position: relative;
-    width: 480px;
+    width: 100%;
+    max-width: 480px;
     user-select: none;
     /* Create stacking context so receipt can pop over top */
     z-index: 1;
@@ -227,8 +228,8 @@ const StyledWrapper = styled.div`
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 520px;
-    height: 340px;
+    width: 110%;
+    height: 110%;
     border-radius: 50%;
     background: radial-gradient(ellipse, rgba(168,85,247,0.08) 0%, transparent 70%);
     filter: blur(30px);
@@ -511,7 +512,9 @@ const StyledWrapper = styled.div`
   .receipt {
     z-index: 2;
     position: relative;
-    width: 420px;
+    width: 90%;
+    max-width: 420px;
+    margin: 0 auto;
     display: flex;
     flex-direction: column;
     padding: 16px;

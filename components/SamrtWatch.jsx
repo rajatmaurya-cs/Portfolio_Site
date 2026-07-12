@@ -192,6 +192,18 @@ const StyledWrapper = styled.div`
     height: 460px;
   }
 
+  @media (max-width: 480px) {
+    .pro-watch-experience .watch-assembly {
+      transform: scale(0.8);
+    }
+  }
+
+  @media (max-width: 380px) {
+    .pro-watch-experience .watch-assembly {
+      transform: scale(0.65);
+    }
+  }
+
   .pro-watch-experience .strap-piece {
     position: absolute;
     left: 50%;
@@ -232,27 +244,58 @@ const StyledWrapper = styled.div`
 
   .pro-watch-experience .crown-mechanism {
     position: absolute;
-    right: -8px;
+    right: -12px;
     top: 75px;
-    width: 22px;
-    height: 55px;
-    background: linear-gradient(to bottom, #8e8e93, #48484a, #8e8e93);
-    border-radius: 8px;
+    width: 14px;
+    height: 50px;
+    background-color: #d1d1d6;
+    background-image: repeating-linear-gradient(to bottom, rgba(0,0,0,0.2) 0px, rgba(0,0,0,0.2) 1.5px, transparent 1.5px, transparent 3px), linear-gradient(to right, #b0b0b5, #e5e5ea);
+    border-radius: 4px 6px 6px 4px;
     z-index: 15;
-    border-left: 2px solid #000;
+    border: 1px solid #999;
+    border-left: none;
+    box-shadow: 2px 0 5px rgba(0,0,0,0.2), inset -1px 0 2px rgba(255,255,255,0.8);
   }
 
   .pro-watch-experience .crown-mechanism::after {
     content: "";
     position: absolute;
     top: 50%;
-    left: 0;
-    right: 0;
-    height: 6px;
-    background: var(--accent-orange);
+    right: -2px;
     transform: translateY(-50%);
-    filter: blur(1px);
-    box-shadow: 0 0 10px var(--accent-orange);
+    width: 10px;
+    height: 10px;
+    background: radial-gradient(circle at center, #f2f2f7, #c7c7cc);
+    border-radius: 50%;
+    border: 1px solid #a1a1a6;
+    box-shadow: inset 0 0 2px #fff;
+    filter: none;
+  }
+
+  .pro-watch-experience .side-utility-bar {
+    position: absolute;
+    right: -1px;
+    top: 170px;
+    width: 12px;
+    height: 80px;
+    background: #9ca3af;
+    border-radius: 10px;
+    z-index: 14;
+    box-shadow: inset 2px 0 4px rgba(0,0,0,0.3);
+  }
+
+  .pro-watch-experience .side-utility-bar::after {
+    content: '';
+    position: absolute;
+    right: -4px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 8px;
+    height: 56px;
+    background: linear-gradient(to bottom, #d1d1d6, #f2f2f7, #d1d1d6);
+    border-radius: 6px;
+    border: 1px solid #b0b0b5;
+    box-shadow: -1px 0 2px rgba(0,0,0,0.2), inset 1px 0 2px rgba(255,255,255,1);
   }
 
   .pro-watch-experience .action-trigger {
