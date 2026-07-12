@@ -14,12 +14,16 @@ const TicketMachine = () => {
 
     setTimeout(() => {
       setShowReceipt(true);
+    }, 800);
+
+    setTimeout(() => {
       if (machineRef.current) {
-        const yOffset = -140; // Leaves margin at top to prevent overlap with navbar
-        const y = machineRef.current.getBoundingClientRect().top + window.pageYOffset + yOffset;
+        const receiptHeight = 450;
+        const receiptCenter = machineRef.current.getBoundingClientRect().top + window.pageYOffset + 60 + (receiptHeight / 2);
+        const y = receiptCenter - (window.innerHeight / 2);
         window.scrollTo({ top: y, behavior: 'smooth' });
       }
-    }, 800);
+    }, 2800);
 
     setTimeout(() => {
       setIsPrinting(false);
@@ -188,9 +192,13 @@ const printAndPop = keyframes`
     transform: translateY(-100%);
     clip-path: inset(100% -20% 0% -20%);
   }
-  50%, 100% {
+  50% {
     transform: translateY(0%);
-    clip-path: inset(-20% -20% -20% -20%);
+    clip-path: inset(0% -20% 0% -20%);
+  }
+  100% {
+    transform: translateY(0%);
+    clip-path: inset(0% -20% 0% -20%);
   }
 `;
 
