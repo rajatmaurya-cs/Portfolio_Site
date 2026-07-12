@@ -186,18 +186,10 @@ const spinSymbol = keyframes`
 const printAndPop = keyframes`
   0% {
     transform: translateY(-100%);
-    clip-path: inset(100% 0% 0% 0%);
+    clip-path: inset(100% -20% 0% -20%);
   }
-  50% {
+  50%, 100% {
     transform: translateY(0%);
-    clip-path: inset(0% 0% 0% 0%);
-  }
-  60% {
-    transform: translateY(0%);
-    clip-path: inset(0% 0% 0% 0%);
-  }
-  100% {
-    transform: translateY(-12%) scale(1.1);
     clip-path: inset(-20% -20% -20% -20%);
   }
 `;
@@ -213,6 +205,10 @@ const ledBlink = keyframes`
 `;
 
 const StyledWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+
   .machine {
     position: relative;
     width: 100%;
