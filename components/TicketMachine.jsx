@@ -151,7 +151,7 @@ const TicketMachine = () => {
                     <td colSpan={2} className="no-dollar">✦ Veyra Creator Platform</td>
                   </tr>
                   <tr>
-                    <td colSpan={2} className="no-dollar">✦ AI Powered NoteCraft</td>
+                    <td colSpan={2} className="no-dollar">✦  NoteFlow</td>
                   </tr>
                 </tbody>
               </table>

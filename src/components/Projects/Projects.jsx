@@ -45,17 +45,17 @@ function Projects() {
                 </ul>
               </div>
             }
-            ghLink="https://github.com/rajatmaurya-cs/Veyra-creator-platform"
+            ghLink="https://veyra-creator-platform.vercel.app/Home"
           />
 
           <ProjectCard
             imgPath={bitsOfCode}
             isBlog={false}
-            title="AI NoteCraft"
+            title="NoteFlow"
             description={
               <div className="flex flex-col gap-2 text-[0.9em]">
                 <p>
-                  AI Powered NoteCraft is a next-gen productivity suite built specifically for students — combining intelligent note-taking, an AI tutor, task scheduling, and progress analytics into one beautiful, distraction-free workspace.
+                  NoteFlow is a next-gen productivity suite built specifically for students — combining intelligent note-taking, an AI tutor, task scheduling, and progress analytics into one beautiful, distraction-free workspace.
                 </p>
                 <ul className="list-none space-y-1.5 mt-2">
                   <li>📝 <strong className="text-white">Smart Notes:</strong> Create and organize notes with a sleek rich-text editor</li>

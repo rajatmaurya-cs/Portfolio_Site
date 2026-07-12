@@ -104,7 +104,7 @@ const Card = () => {
                   </div>
                   <div className="pr-text">
                     {/* <div className="pr-title">Feature request: Document analysis</div> */}
-                    <a href="https://github.com/rajatmaurya-cs?tab=repositories">Veyra-creator-platform</a>
+                    <a href="https://veyra-creator-platform.vercel.app/Home">Veyra-creator-platform</a>
                     <div className="pr-desc">#5054 opened 1 minute ago by rajatmaurya-cs</div>
                   </div>
                 </div>
