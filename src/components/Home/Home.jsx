@@ -65,7 +65,7 @@ function Home() {
       </div>
 
       {/* TICKET TOUR SECTION */}
-      <div className="relative overflow-hidden pt-2 pb-16 px-4">
+      <div className="relative pt-2 pb-16 px-4">
         {/* Ambient glow */}
         <div style={{ position: "absolute", top: "20%", right: "15%", width: "250px", height: "250px", borderRadius: "50%", background: "radial-gradient(circle, rgba(199,112,240,0.1) 0%, transparent 70%)", filter: "blur(40px)", pointerEvents: "none" }} />
 

@@ -102,7 +102,7 @@ const TicketMachine = () => {
             <div className="bg-stars-2" />
             <div className="bg-stars-3" />
             <div className="bg-moon" />
-            
+
             {/* Astronaut shifted to top left */}
             <img src="https://uiverse.io/astronaut.png" alt="Astronaut" className="astronaut-img" />
 
@@ -121,23 +121,27 @@ const TicketMachine = () => {
                     <th>Level</th>
                   </tr>
                   <tr>
-                    <td className="no-dollar">React / Next.js</td>
+                    <td className="no-dollar">Scalable Backend Architecture</td>
                     <td className="no-dollar">★★★★★</td>
                   </tr>
                   <tr>
-                    <td className="no-dollar">Node / Express</td>
+                    <td className="no-dollar">Authentication & Authorization</td>
                     <td className="no-dollar">★★★★★</td>
                   </tr>
                   <tr>
-                    <td className="no-dollar">MongoDB / Redis</td>
-                    <td className="no-dollar">★★★★☆</td>
+                    <td className="no-dollar">Caching & Background Jobs (Redis, BullMQ)</td>
+                    <td className="no-dollar">★★★★★</td>
                   </tr>
                   <tr>
-                    <td className="no-dollar">TypeScript</td>
-                    <td className="no-dollar">★★★★☆</td>
+                    <td className="no-dollar">Database Design (PostgreSQL, Prisma, MongoDB)</td>
+                    <td className="no-dollar">★★★★★</td>
                   </tr>
                   <tr>
-                    <td className="no-dollar">Tailwind CSS</td>
+                    <td className="no-dollar">AI Integration & LLM Applications</td>
+                    <td className="no-dollar">★★★★★</td>
+                  </tr>
+                  <tr>
+                    <td className="no-dollar">Next.js & TypeScript</td>
                     <td className="no-dollar">★★★★★</td>
                   </tr>
                   <tr className="receipt-subtotal">
@@ -147,10 +151,7 @@ const TicketMachine = () => {
                     <td colSpan={2} className="no-dollar">✦ Veyra Creator Platform</td>
                   </tr>
                   <tr>
-                    <td colSpan={2} className="no-dollar">✦ AI Category & Tag Gen</td>
-                  </tr>
-                  <tr>
-                    <td colSpan={2} className="no-dollar">✦ AI B2B Proposal Gen</td>
+                    <td colSpan={2} className="no-dollar">✦ AI Powered NoteCraft</td>
                   </tr>
                 </tbody>
               </table>
@@ -185,19 +186,19 @@ const spinSymbol = keyframes`
 const printAndPop = keyframes`
   0% {
     transform: translateY(-100%);
-    clip-path: inset(100% 0 0 0);
+    clip-path: inset(100% -500px -500px -500px);
   }
   50% {
     transform: translateY(0%);
-    clip-path: inset(0 0 0 0);
+    clip-path: inset(-500px -500px -500px -500px);
   }
   60% {
     transform: translateY(0%);
-    clip-path: inset(0 0 0 0);
+    clip-path: inset(-500px -500px -500px -500px);
   }
   100% {
-    transform: translateY(-20%) scale(1.1);
-    clip-path: inset(0 0 0 0);
+    transform: translateY(-12%) scale(1.1);
+    clip-path: inset(-500px -500px -500px -500px);
   }
 `;
 
@@ -496,7 +497,7 @@ const StyledWrapper = styled.div`
     width: 100%;
     display: flex;
     justify-content: center;
-    z-index: 2; /* Above body, below top */
+    z-index: 3; /* Above body (2), below top (4) */
     pointer-events: none;
     opacity: 0;
 
@@ -510,7 +511,7 @@ const StyledWrapper = styled.div`
   .receipt {
     z-index: 2;
     position: relative;
-    width: 320px;
+    width: 420px;
     display: flex;
     flex-direction: column;
     padding: 16px;
@@ -521,38 +522,10 @@ const StyledWrapper = styled.div`
     font-weight: bold;
     border-radius: 20px;
     overflow: hidden;
-    box-shadow:
-      0 30px 60px rgba(0,0,0,0.8),
-      0 0 40px rgba(168,85,247,0.25);
+    box-shadow: 0 30px 60px rgba(0,0,0,0.8);
   }
 
-  /* Inner Card Background Layers */
-  .receipt::before {
-    content: "";
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    inset: -3px;
-    border-radius: 10px;
-    background: radial-gradient(#858585, transparent, transparent);
-    transform: translate(-5px, 250px);
-    transition: 0.4s ease-in-out;
-    z-index: -1;
-  }
-  .receipt:hover::before {
-    width: 150%;
-    height: 100%;
-    margin-left: -4.25em;
-  }
-  .receipt::after {
-    content: "";
-    position: absolute;
-    inset: 2px;
-    border-radius: 20px;
-    background: rgb(23, 23, 23, 0.7);
-    transition: all 0.4s ease-in-out;
-    z-index: -1;
-  }
+  /* Inner Card Background Layers removed to keep card clean */
 
   /* ── Background Elements (Moon & Stars) ── */
   .bg-moon {
@@ -737,6 +710,7 @@ const StyledWrapper = styled.div`
   }
 
   .receipt-table {
+    width: 100%;
     font: inherit;
     color: inherit;
     text-align: left;
@@ -745,6 +719,11 @@ const StyledWrapper = styled.div`
     th {
       color: #cd5ff8;
       font-weight: 600;
+      padding-bottom: 0.5em;
+    }
+
+    td {
+      padding: 0.35em 0;
     }
 
     th:last-child,

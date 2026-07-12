@@ -24,31 +24,54 @@ function Projects() {
           <GithubCard />
         </div>
 
-        <div className="grid gap-6 pb-10 pt-4 md:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-8 pb-10 pt-4 md:grid-cols-1 lg:grid-cols-2">
 
           <ProjectCard
             imgPath={bitsOfCode}
             isBlog={false}
             title="Veyra - The Home For Modern creators"
-            description="VEYRA is an AI-powered creator platform that enables creators to write, publish, and manage blogs through a modern, scalable dashboard. It features AI-assisted content generation, rich-text editing, secure authentication, and personalized analytics for followers, likes, comments, drafts, and published blogs. Built with Next.js, TypeScript, Node.js, Express.js, MongoDB, Redis, and Tailwind CSS, the platform leverages Redis caching, React Query, and performance optimizations to deliver a fast, secure, and seamless user experience."
+            description={
+              <div className="flex flex-col gap-2 text-[0.9em]">
+                <p>
+                  VEYRA is a full-stack, AI-powered platform where creators can publish, manage, and monetize their blogs through a comprehensive analytics dashboard.
+                </p>
+                <ul className="list-none space-y-1.5 mt-2">
+                  <li>📊 <strong className="text-white">Creator Dashboard:</strong> Track followers, manage drafts, and generate articles using built-in AI tools.</li>
+                  <li>🛡️ <strong className="text-white">Two-Tier AI Moderation:</strong> Automated JS and AI layers instantly filter spam and harassment from comment sections.</li>
+                  <li>💳 <strong className="text-white">Monetization & Limits:</strong> Integrated Razorpay for premium subscription upgrades to unlock higher AI generation limits.</li>
+                  <li>🔒 <strong className="text-white">Robust Security:</strong> OTP and Google Auth, JWT rotation, and Redis-backed rate limiting to prevent API abuse.</li>
+                  <li>👑 <strong className="text-white">Dynamic SuperAdmin:</strong> Real-time control over global AI limits, pricing tiers, and app features with complete audit logs.</li>
+                  <li>⚡ <strong className="text-white">Tech Stack:</strong> Next.js, TypeScript, React Query, Node.js, Express, MongoDB, and Redis.</li>
+                </ul>
+              </div>
+            }
             ghLink="https://github.com/rajatmaurya-cs/Veyra-creator-platform"
           />
 
           <ProjectCard
             imgPath={bitsOfCode}
             isBlog={false}
-            title="AI Auto Category & Tag Generator"
-            description="Built an AI-driven auto category and tag generation system that analyzes content context to automatically assign relevant categories and tags. Integrated machine learning APIs, optimized data processing pipelines, and designed a responsive UI for real-time interaction, improving content discoverability and system efficiency."
+            title="AI NoteCraft"
+            description={
+              <div className="flex flex-col gap-2 text-[0.9em]">
+                <p>
+                  AI Powered NoteCraft is a next-gen productivity suite built specifically for students — combining intelligent note-taking, an AI tutor, task scheduling, and progress analytics into one beautiful, distraction-free workspace.
+                </p>
+                <ul className="list-none space-y-1.5 mt-2">
+                  <li>📝 <strong className="text-white">Smart Notes:</strong> Create and organize notes with a sleek rich-text editor</li>
+                  <li>🤖 <strong className="text-white">AI Tutor:</strong> Access multiple AI models to solve academic questions instantly</li>
+                  <li>📥 <strong className="text-white">Save AI Answers:</strong> Save any AI response directly into your notes with one click</li>
+                  <li>📅 <strong className="text-white">Task Scheduler:</strong> Manage daily tasks, set priorities, and never miss a deadline</li>
+                  <li>📈 <strong className="text-white">Progress Tracker:</strong> Visualize your study habits and streaks with interactive charts</li>
+                  <li>🌙 <strong className="text-white">Premium Dark UI:</strong> Smooth, eye-friendly dark interface crafted for long study sessions</li>
+                  <li>⚡ <strong className="text-white">Focus Mode:</strong> Distraction-free environment to maximize concentration</li>
+                </ul>
+              </div>
+            }
             ghLink="https://github.com/rajatmaurya-cs/ai-auto-category-tag-generator"
           />
 
-          <ProjectCard
-            imgPath={bitsOfCode}
-            isBlog={false}
-            title="AI B2B Proposal Generator"
-            description="Built an AI-driven B2B proposal generation system that dynamically creates personalized business proposals using contextual input and NLP models. Implemented intelligent content structuring, template automation, and real-time data processing, significantly reducing proposal creation time and enhancing business productivity."
-            ghLink="https://github.com/rajatmaurya-cs/ai-auto-category-tag-generator"
-          />
+
 
         </div>
 

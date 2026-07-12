@@ -9,214 +9,91 @@ function ProjectCards(props) {
     <article
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
-      style={{
-        position: "relative",
-        borderRadius: "20px",
-        background: "rgba(255,255,255,0.03)",
-        border: hovered
-          ? "1px solid rgba(199,112,240,0.6)"
-          : "1px solid rgba(199,112,240,0.15)",
-        backdropFilter: "blur(12px)",
-        overflow: "hidden",
-        transition: "all 0.4s ease",
-        transform: hovered ? "translateY(-8px)" : "translateY(0)",
-        boxShadow: hovered
-          ? "0 20px 60px rgba(199,112,240,0.25), 0 0 0 1px rgba(199,112,240,0.3), inset 0 1px 0 rgba(255,255,255,0.1)"
-          : "0 4px 20px rgba(0,0,0,0.3)",
-        color: "white",
-        display: "flex",
-        flexDirection: "column",
-        height: "100%",
-      }}
+      className={`relative flex flex-col rounded-[20px] bg-white/[0.03] backdrop-blur-md overflow-hidden transition-all duration-400 ease-out border ${
+        hovered
+          ? "border-[#c770f0]/60 -translate-y-2 shadow-[0_20px_60px_rgba(199,112,240,0.25),_0_0_0_1px_rgba(199,112,240,0.3),_inset_0_1px_0_rgba(255,255,255,0.1)]"
+          : "border-[#c770f0]/15 translate-y-0 shadow-[0_4px_20px_rgba(0,0,0,0.3)]"
+      } color-white h-full`}
     >
       {/* Animated gradient top border */}
       <div
+        className="absolute top-0 left-0 w-full h-[3px] bg-gradient-to-r from-[#c770f0] via-[#7b2fff] to-[#c770f0]"
         style={{
-          height: "3px",
-          background: "linear-gradient(90deg, #c770f0, #7b2fff, #c770f0)",
           backgroundSize: "200% 100%",
           animation: "shimmer 3s linear infinite",
         }}
       />
 
       {/* Image area */}
-      <div
-        style={{
-          position: "relative",
-          overflow: "hidden",
-          margin: "16px 16px 0",
-          borderRadius: "12px",
-          background: "rgba(0,0,0,0.2)",
-        }}
-      >
+      <div className="relative overflow-hidden m-4 rounded-xl bg-black/20">
         <img
           src={props.imgPath?.src || props.imgPath}
           alt={props.title}
-          style={{
-            width: "100%",
-            height: "180px",
-            objectFit: "cover",
-            borderRadius: "12px",
-            opacity: hovered ? 1 : 0.75,
-            transform: hovered ? "scale(1.04)" : "scale(1)",
-            transition: "all 0.5s ease",
-          }}
+          className={`w-full aspect-video object-cover rounded-xl transition-all duration-500 ${
+            hovered ? "scale-105 opacity-100" : "scale-100 opacity-75"
+          }`}
         />
         {/* Overlay gradient on image */}
-        <div
-          style={{
-            position: "absolute",
-            inset: 0,
-            background:
-              "linear-gradient(to top, rgba(10,6,22,0.8) 0%, transparent 60%)",
-            borderRadius: "12px",
-          }}
-        />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#0a0616]/80 to-transparent rounded-xl" />
 
         {/* Type badge */}
-        <span
-          style={{
-            position: "absolute",
-            top: "10px",
-            right: "10px",
-            padding: "3px 10px",
-            borderRadius: "999px",
-            background: "rgba(199,112,240,0.2)",
-            border: "1px solid rgba(199,112,240,0.5)",
-            fontSize: "0.68em",
-            letterSpacing: "0.12em",
-            textTransform: "uppercase",
-            color: "#c770f0",
-            backdropFilter: "blur(8px)",
-          }}
-        >
+        <span className="absolute top-[10px] right-[10px] px-2.5 py-1 rounded-full bg-[#c770f0]/20 border border-[#c770f0]/50 text-[0.68em] tracking-widest uppercase text-[#c770f0] backdrop-blur-sm">
           {props.isBlog ? "Blog" : "Project"}
         </span>
       </div>
 
-      {/* Card body */}
-      <div style={{ padding: "20px 20px 0", flex: 1, display: "flex", flexDirection: "column" }}>
+      {/* Card body & footer wrapper */}
+      <div className="flex flex-col flex-1 p-5 pt-0">
         {/* Title */}
-        <h3
-          style={{
-            fontSize: "1.15rem",
-            fontWeight: 800,
-            marginBottom: "10px",
-            background: "linear-gradient(135deg, #c770f0, #a855f7, #7b2fff)",
-            WebkitBackgroundClip: "text",
-            WebkitTextFillColor: "transparent",
-            backgroundClip: "text",
-            lineHeight: 1.3,
-          }}
-        >
+        <h3 className="text-[1.3rem] font-extrabold mb-2.5 bg-gradient-to-r from-[#c770f0] via-[#a855f7] to-[#7b2fff] bg-clip-text text-transparent leading-snug">
           {props.title}
         </h3>
 
         {/* Divider */}
-        <div
-          style={{
-            height: "1px",
-            background:
-              "linear-gradient(90deg, rgba(199,112,240,0.4), transparent)",
-            marginBottom: "12px",
-          }}
-        />
+        <div className="h-[1px] bg-gradient-to-r from-[#c770f0]/40 to-transparent mb-3" />
 
         {/* Description */}
-        <p
-          style={{
-            fontSize: "0.85em",
-            lineHeight: 1.7,
-            color: "rgba(255,255,255,0.65)",
-            textAlign: "left",
-            flex: 1,
-            display: "-webkit-box",
-            WebkitLineClamp: 5,
-            WebkitBoxOrient: "vertical",
-            overflow: "hidden",
-          }}
-        >
+        <div className="text-[0.95rem] leading-relaxed text-white/75 text-left flex-grow overflow-visible">
           {props.description}
-        </p>
-      </div>
+        </div>
 
-      {/* Footer: Buttons */}
-      <div
-        style={{
-          padding: "16px 20px 20px",
-          display: "flex",
-          gap: "10px",
-          marginTop: "auto",
-        }}
-      >
-        <a
-          href={props.ghLink}
-          target="_blank"
-          rel="noreferrer"
-          style={{
-            display: "inline-flex",
-            alignItems: "center",
-            gap: "7px",
-            padding: "9px 18px",
-            borderRadius: "10px",
-            background: hovered
-              ? "linear-gradient(135deg, #7b2fff, #c770f0)"
-              : "rgba(199,112,240,0.12)",
-            border: "1px solid rgba(199,112,240,0.4)",
-            color: "white",
-            fontSize: "0.85em",
-            fontWeight: 600,
-            textDecoration: "none",
-            transition: "all 0.3s ease",
-            flex: 1,
-            justifyContent: "center",
-          }}
-        >
-          <BsGithub size={15} />
-          {props.isBlog ? "Blog" : "GitHub"}
-        </a>
-
-        {!props.isBlog && props.demoLink && (
+        {/* Footer: Buttons */}
+        <div className="flex gap-2.5 mt-5">
           <a
-            href={props.demoLink}
+            href={props.ghLink}
             target="_blank"
             rel="noreferrer"
-            style={{
-              display: "inline-flex",
-              alignItems: "center",
-              gap: "7px",
-              padding: "9px 18px",
-              borderRadius: "10px",
-              background: "rgba(255,255,255,0.05)",
-              border: "1px solid rgba(255,255,255,0.15)",
-              color: "rgba(255,255,255,0.8)",
-              fontSize: "0.85em",
-              fontWeight: 600,
-              textDecoration: "none",
-              transition: "all 0.3s ease",
-              flex: 1,
-              justifyContent: "center",
-            }}
+            className={`inline-flex items-center gap-1.5 px-[18px] py-[9px] rounded-xl border border-[#c770f0]/40 text-[0.85em] font-semibold text-white no-underline transition-all duration-300 flex-1 justify-center ${
+              hovered
+                ? "bg-gradient-to-r from-[#7b2fff] to-[#c770f0]"
+                : "bg-[#c770f0]/10"
+            }`}
           >
-            <CgWebsite size={15} />
-            Live Demo
+            <BsGithub size={15} />
+            {props.isBlog ? "Blog" : "GitHub"}
           </a>
-        )}
+
+          {!props.isBlog && props.demoLink && (
+            <a
+              href={props.demoLink}
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-1.5 px-[18px] py-[9px] rounded-xl border border-white/15 bg-white/5 text-[0.85em] font-semibold text-white/80 no-underline transition-all duration-300 flex-1 justify-center hover:bg-white/10"
+            >
+              <CgWebsite size={15} />
+              Live Demo
+            </a>
+          )}
+        </div>
       </div>
 
       {/* Glow effect on hover */}
       <div
+        className={`absolute -top-[60px] -right-[60px] w-[200px] h-[200px] rounded-full pointer-events-none transition-opacity duration-400 ${
+          hovered ? "opacity-100" : "opacity-0"
+        }`}
         style={{
-          position: "absolute",
-          top: "-60px",
-          right: "-60px",
-          width: "200px",
-          height: "200px",
-          borderRadius: "50%",
           background: "radial-gradient(circle, rgba(199,112,240,0.12) 0%, transparent 70%)",
-          opacity: hovered ? 1 : 0,
-          transition: "opacity 0.4s ease",
-          pointerEvents: "none",
         }}
       />
 
