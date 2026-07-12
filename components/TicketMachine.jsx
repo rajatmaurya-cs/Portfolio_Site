@@ -18,18 +18,11 @@ const TicketMachine = () => {
 
     setTimeout(() => {
       if (machineRef.current) {
-        const receiptElement = machineRef.current.querySelector('.receipt');
-        if (receiptElement) {
-          const rect = receiptElement.getBoundingClientRect();
-          const absoluteTop = rect.top + window.pageYOffset;
-          const center = absoluteTop + (rect.height / 2);
-          const y = center - (window.innerHeight / 2);
-          window.scrollTo({ top: y, behavior: 'smooth' });
-        } else {
-          // Fallback if element not found
-          const y = machineRef.current.getBoundingClientRect().top + window.pageYOffset - 80;
-          window.scrollTo({ top: y, behavior: 'smooth' });
-        }
+        // Scroll so the top of the ticket machine is safely below the navbar
+        // This ensures the ticket is fully visible but we don't scroll so far down 
+        // that the next section ("Let me introduce myself") appears.
+        const y = machineRef.current.getBoundingClientRect().top + window.pageYOffset - 120;
+        window.scrollTo({ top: y, behavior: 'smooth' });
       }
     }, 2800);
 
