@@ -51,7 +51,7 @@ function Home() {
                 alt="home pic"
                 className="mx-auto h-auto max-h-[450px] w-full"
               /> */}
-              <div className="mx-auto flex h-[320px] w-full max-w-[520px] items-center justify-center sm:h-[420px] md:h-[500px] lg:h-[560px]">
+              <div className="mx-auto flex min-h-[400px] w-full max-w-[520px] items-center justify-center sm:min-h-[450px] md:min-h-[500px] lg:min-h-[560px]">
                 <div className="relative">
                   <div className="absolute inset-0 bg-[#c770f0] opacity-20 blur-[100px] rounded-full pointer-events-none"></div>
                   <div className="relative z-10 scale-90 origin-center transition-transform duration-300 hover:scale-95">

@@ -33,7 +33,7 @@ function NavBar() {
   return (
     <nav
       className={`fixed left-0 top-0 z-[1000] w-full px-8 py-3 text-[1.2rem] transition-all duration-300 ${
-        navColour
+        navColour || expand
           ? "bg-[#1b1a2ea9] shadow-[0_10px_10px_0_rgba(9,5,29,0.171)] backdrop-blur-[15px]"
           : "bg-transparent"
       }`}
@@ -62,27 +62,27 @@ function NavBar() {
         </button>
 
         <ul
-          className={`w-full list-none flex-col items-start gap-1 pl-0 md:flex md:w-auto md:flex-row md:items-center ${
+          className={`w-full list-none flex-col items-start gap-4 pl-0 pt-4 pb-4 md:pt-0 md:pb-0 md:flex md:w-auto md:flex-row md:items-center ${
             expand ? "flex" : "hidden"
           }`}
         >
-          <li className="md:ml-5">
-            <Link href="/" onClick={() => updateExpanded(false)} className={navLinkClass}>
+          <li className="md:ml-5 w-full">
+            <Link href="/" onClick={() => updateExpanded(false)} className={navLinkClass + " block w-full"}>
               <AiOutlineHome className="mb-[2px] inline-block" /> Home
             </Link>
           </li>
-          <li className="md:ml-5">
-            <Link href="/about" onClick={() => updateExpanded(false)} className={navLinkClass}>
+          <li className="md:ml-5 w-full">
+            <Link href="/about" onClick={() => updateExpanded(false)} className={navLinkClass + " block w-full"}>
               <AiOutlineUser className="mb-[2px] inline-block" /> About
             </Link>
           </li>
-          <li className="md:ml-5">
-            <Link href="/project" onClick={() => updateExpanded(false)} className={navLinkClass}>
+          <li className="md:ml-5 w-full">
+            <Link href="/project" onClick={() => updateExpanded(false)} className={navLinkClass + " block w-full"}>
               <AiOutlineFundProjectionScreen className="mb-[2px] inline-block" /> Projects
             </Link>
           </li>
-          <li className="md:ml-5">
-            <Link href="/resume" onClick={() => updateExpanded(false)} className={navLinkClass}>
+          <li className="md:ml-5 w-full">
+            <Link href="/resume" onClick={() => updateExpanded(false)} className={navLinkClass + " block w-full"}>
               <CgFileDocument className="mb-[2px] inline-block" /> Resume
             </Link>
           </li>
