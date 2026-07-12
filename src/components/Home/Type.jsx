@@ -60,7 +60,7 @@ function Type() {
   }, [tick, isPaused, isDeleting]);
 
   return (
-    <div className="relative inline-block min-h-[80px] sm:min-h-[100px] md:min-h-[120px] w-full">
+    <div className="relative inline-block h-[120px] sm:h-[140px] md:h-[180px] w-full">
       <span className="text-[1.4em] font-medium text-[#be6adf] md:text-[2.2em] md:font-semibold transition-all duration-100 ease-out">
         {text}
       </span>

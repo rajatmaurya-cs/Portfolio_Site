@@ -3,7 +3,7 @@ import Particle from "../Particle";
 
 import Techstack from "./Techstack";
 import Aboutcard from "./AboutCard";
-import SmartWatch from "../../../components/SamrtWatch";
+import laptopImg from "../../Assets/about.png";
 import Toolstack from "./Toolstack";
 
 function About() {
@@ -19,14 +19,8 @@ function About() {
               </h1>
               <Aboutcard />
             </div>
-            <div className="pb-[50px] pt-0 md:col-span-5 flex justify-center items-center">
-              <div className="relative">
-                {/* Ambient glow behind watch */}
-                <div className="absolute inset-0 bg-[#c770f0] opacity-20 blur-[100px] rounded-full pointer-events-none"></div>
-                <div className="relative z-10 scale-[0.85] md:scale-100 origin-center transition-transform duration-300">
-                  <SmartWatch />
-                </div>
-              </div>
+            <div className="pb-[50px] pt-0 md:col-span-5">
+              <img src={laptopImg.src || laptopImg} alt="about" className="h-auto w-full" />
             </div>
           </div>
 

@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import styled from 'styled-components';
+import myImg from '../src/Assets/myImg.jpg';
 
 const SmartWatch = () => {
   const [time, setTime] = useState(new Date());
@@ -52,38 +53,41 @@ const SmartWatch = () => {
               <div className="action-trigger" />
               <div className="sapphire-glass">
                 <div className="os-overlay">
-                  <div className="system-time">{sysTime}</div>
+                  <div className="system-time" suppressHydrationWarning>{sysTime}</div>
                   <div className="battery-status">
-                    <div className="bat-percent">100%</div>
+                    <div className="bat-percent">63%</div>
                     <div className="bat-icon" />
                   </div>
                 </div>
                 <div className="viewport-canvas">
-                  <div className="ui-view face-modular-pro">
-                    <div className="complication-top">
-                      <div className="comp-pill">
-                        <span className="icon">☀️</span>
+                  <div className="ui-view face-modular-pro avatar-stats-face">
+                    <div className="as-top-complications">
+                      <div className="as-pill">
+                        <span className="icon" style={{color: '#ffcc00'}}>☀️</span>
                         <span className="val">22°</span>
                       </div>
-                      <div className="comp-pill">
-                        <span className="icon" style={{color: '#ff9500'}}>🧭</span>
+                      <div className="as-pill">
+                        <span className="icon" style={{color: '#c770f0'}}>⌖</span>
                         <span className="val">NW</span>
                       </div>
                     </div>
-                    <div className="hero-time">
-                      <div className="h-digits">{hours}:{minutes}</div>
-                      <div className="h-seconds">{seconds}</div>
-                    </div>
-                    <div className="complication-bottom">
-                      <div className="wide-pill">
-                        <div className="pill-info">
-                          <span className="label">CODING STREAK</span>
-                          <span className="data">24 DAYS</span>
-                        </div>
-                        <div className="pill-gauge">
-                          <div className="gauge-fill" />
-                        </div>
+
+                    <div className="as-center-ring">
+                      <div className="as-glow-ring"></div>
+                      <div className="as-tick-ring"></div>
+                      <div className="as-avatar-wrapper">
+                        <img src={myImg.src || myImg} alt="Rajat Maurya" className="as-avatar-img" />
                       </div>
+                    </div>
+
+                    <div className="as-info">
+                      <div className="as-name">Rajat Maurya</div>
+                      
+                    </div>
+
+                    <div className="as-hero-time" suppressHydrationWarning>
+                      <div className="as-h-digits" suppressHydrationWarning>{hours}:{minutes}</div>
+                      <div className="as-h-seconds" suppressHydrationWarning>{seconds}</div>
                     </div>
                   </div>
                   <div className="ui-view face-activity-pro">
@@ -166,16 +170,15 @@ const StyledWrapper = styled.div`
     --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
 
     margin: 0;
-    padding: 140px 140px;
+    padding: 20px;
     height: 100%;
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: radial-gradient(circle at center, #111, #000);
+    background: transparent;
     font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display",
       "Helvetica Neue", sans-serif;
-    overflow: hidden;
     user-select: none;
   }
 
@@ -185,8 +188,8 @@ const StyledWrapper = styled.div`
 
   .pro-watch-experience .watch-assembly {
     position: relative;
-    width: 320px;
-    height: 380px;
+    width: 380px;
+    height: 460px;
   }
 
   .pro-watch-experience .strap-piece {
@@ -287,12 +290,50 @@ const StyledWrapper = styled.div`
     font-weight: 700;
     font-size: 11px;
     color: #fff;
+    transition: opacity 0.3s ease;
+  }
+
+  .pro-watch-experience .battery-status {
+    display: flex;
+    align-items: center;
+    gap: 5px;
   }
 
   .pro-watch-experience .bat-percent {
     font-size: 10px;
     color: #4cd964;
-    margin-right: 4px;
+    font-weight: 800;
+  }
+
+  .pro-watch-experience .bat-icon {
+    width: 20px;
+    height: 11px;
+    border: 1.5px solid rgba(255, 255, 255, 0.4);
+    border-radius: 3px;
+    position: relative;
+    padding: 1.5px;
+    box-sizing: border-box;
+  }
+
+  .pro-watch-experience .bat-icon::after {
+    content: '';
+    position: absolute;
+    right: -3.5px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 2px;
+    height: 5px;
+    background: rgba(255, 255, 255, 0.4);
+    border-radius: 0 1px 1px 0;
+  }
+
+  .pro-watch-experience .bat-icon::before {
+    content: '';
+    display: block;
+    width: 63%; /* Match the 63% text */
+    height: 100%;
+    background: #4cd964;
+    border-radius: 1px;
   }
 
   .pro-watch-experience .viewport-canvas {
@@ -313,93 +354,122 @@ const StyledWrapper = styled.div`
     position: relative;
   }
 
-  .pro-watch-experience .complication-top {
-    display: flex;
-    width: 100%;
-    justify-content: space-between;
-    margin-bottom: 25px;
+  /* Avatar Stats Face */
+  .pro-watch-experience .avatar-stats-face {
+    padding: 50px 25px 30px;
+    background: transparent;
+    justify-content: flex-start;
   }
 
-  .pro-watch-experience .comp-pill {
-    background: var(--glass);
-    border: 1px solid var(--glass-border);
-    padding: 6px 10px;
+  .pro-watch-experience .as-top-complications {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 5px;
+  }
+
+  .pro-watch-experience .as-pill {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 6px 12px;
     border-radius: 20px;
     display: flex;
     align-items: center;
-    gap: 5px;
-    backdrop-filter: blur(8px);
+    gap: 6px;
   }
 
-  .pro-watch-experience .comp-pill .val {
-    font-size: 10px;
+  .pro-watch-experience .as-pill .val {
+    font-size: 11px;
     font-weight: 800;
     color: #fff;
   }
 
-  .pro-watch-experience .hero-time {
-    text-align: center;
+  .pro-watch-experience .as-center-ring {
+    position: relative;
+    width: 190px;
+    height: 190px;
+    margin: 0 auto 20px;
+    flex-shrink: 0;
   }
 
-  .pro-watch-experience .h-digits {
+  .pro-watch-experience .as-glow-ring {
+    position: absolute;
+    inset: -2px;
+    border-radius: 50%;
+    border: 2px solid #a855f7;
+    box-shadow: 0 0 25px rgba(168, 85, 247, 0.6), inset 0 0 20px rgba(168, 85, 247, 0.4);
+    z-index: 2;
+  }
+
+  .pro-watch-experience .as-tick-ring {
+    position: absolute;
+    inset: -12px;
+    border-radius: 50%;
+    border: 1px dashed rgba(255, 255, 255, 0.2);
+    z-index: 1;
+  }
+
+  .pro-watch-experience .as-avatar-wrapper {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    overflow: hidden;
+    background: radial-gradient(circle at center, #6b21a8, #050505 80%);
+    z-index: 3;
+  }
+
+  .pro-watch-experience .as-avatar-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    transform: scale(1.2); /* Zoom in to crop out the white border in the source image */
+  }
+
+  .pro-watch-experience .as-info {
+    text-align: center;
+    margin-bottom: 5px;
+  }
+
+  .pro-watch-experience .as-name {
+    font-size: 18px;
+    font-weight: 800;
+    color: #fff;
+    margin-bottom: 2px;
+  }
+
+  .pro-watch-experience .as-role {
+    font-size: 9px;
+    font-weight: 700;
+    color: #c084fc;
+    letter-spacing: 1px;
+  }
+
+  .pro-watch-experience .as-hero-time {
+    text-align: center;
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    gap: 4px;
+    margin-top: 0px;
+    margin-bottom: 15px;
+  }
+
+  .pro-watch-experience .as-h-digits {
     font-family: "JetBrains Mono", monospace;
-    font-size: 76px;
+    font-size: 38px;
     font-weight: 800;
     color: #fff;
     line-height: 1;
-    letter-spacing: -3px;
+    letter-spacing: -1px;
   }
 
-  .pro-watch-experience .h-seconds {
-    color: var(--accent-orange);
+  .pro-watch-experience .as-h-seconds {
+    color: #a855f7;
+    font-family: "JetBrains Mono", monospace;
     font-weight: 900;
-    font-size: 20px;
-    letter-spacing: 2px;
-  }
-
-  .pro-watch-experience .complication-bottom {
-    margin-top: auto;
-    width: 100%;
-  }
-
-  .pro-watch-experience .wide-pill {
-    background: var(--glass);
-    border: 1px solid var(--glass-border);
-    border-radius: 16px;
-    padding: 12px;
-    backdrop-filter: blur(10px);
-  }
-
-  .pro-watch-experience .pill-info {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 6px;
-  }
-
-  .pro-watch-experience .pill-info .label {
-    font-size: 8px;
-    opacity: 0.6;
-    color: #fff;
-    font-weight: 800;
-  }
-  .pro-watch-experience .pill-info .data {
-    font-size: 11px;
-    color: #fff;
-    font-weight: 800;
-  }
-
-  .pro-watch-experience .pill-gauge {
-    height: 4px;
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 2px;
-  }
-
-  .pro-watch-experience .gauge-fill {
-    width: 72%;
-    height: 100%;
-    background: var(--accent-orange);
-    border-radius: 2px;
-    box-shadow: 0 0 10px var(--accent-orange);
+    font-size: 14px;
+    letter-spacing: 1px;
   }
 
   .pro-watch-experience .ring-stack {
@@ -601,7 +671,12 @@ const StyledWrapper = styled.div`
     transform: translateX(-80%);
   }
 
-  .pro-watch-experience #face1:checked ~ .watch-assembly .b1,
+  .pro-watch-experience #face1:checked ~ .watch-assembly .b1 {
+    background: #a855f7;
+    width: 16px;
+    border-radius: 4px;
+  }
+
   .pro-watch-experience #face2:checked ~ .watch-assembly .b2,
   .pro-watch-experience #face3:checked ~ .watch-assembly .b3,
   .pro-watch-experience #face4:checked ~ .watch-assembly .b4,

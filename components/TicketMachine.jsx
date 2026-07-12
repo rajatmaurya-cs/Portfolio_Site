@@ -81,12 +81,8 @@ const TicketMachine = () => {
 
         {/* Machine body */}
         <div className="machine-body">
-          {/* Decorative ventilation lines */}
+          {/* Decorative horizontal groove */}
           <div className="vent-lines">
-            <div className="vent" />
-            <div className="vent" />
-            <div className="vent" />
-            <div className="vent" />
             <div className="vent" />
           </div>
 
@@ -218,7 +214,7 @@ const ledBlink = keyframes`
 const StyledWrapper = styled.div`
   .machine {
     position: relative;
-    width: 390px;
+    width: 480px;
     user-select: none;
     /* Create stacking context so receipt can pop over top */
     z-index: 1;
@@ -230,10 +226,10 @@ const StyledWrapper = styled.div`
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 420px;
-    height: 300px;
+    width: 520px;
+    height: 340px;
     border-radius: 50%;
-    background: radial-gradient(ellipse, rgba(168,85,247,0.12) 0%, transparent 70%);
+    background: radial-gradient(ellipse, rgba(168,85,247,0.08) 0%, transparent 70%);
     filter: blur(30px);
     pointer-events: none;
     z-index: 0;
@@ -245,18 +241,15 @@ const StyledWrapper = styled.div`
     z-index: 4;
     display: flex;
     align-items: center;
-    gap: 12px;
-    padding: 14px 16px;
-    background: linear-gradient(165deg, #2d2054 0%, #1a1335 50%, #13102a 100%);
-    border-radius: 16px 16px 0 0;
-    border: 1px solid rgba(168,85,247,0.35);
+    gap: 16px;
+    padding: 20px 24px;
+    background: linear-gradient(180deg, #1f1638 0%, #150f28 100%);
+    border-radius: 20px 20px 0 0;
+    border: 1.5px solid rgba(168,85,247,0.3);
     border-bottom: none;
     /* Animate z-index so the receipt can pop over it after printing */
     animation: ${({ $showReceipt }) => $showReceipt ? 'dropZIndex 2s forwards' : 'none'};
-    box-shadow:
-      0 -8px 30px rgba(168,85,247,0.12),
-      inset 0 1px 0 rgba(255,255,255,0.05),
-      inset 0 -2px 8px rgba(0,0,0,0.3);
+    box-shadow: 0 -10px 40px rgba(0,0,0,0.5);
   }
 
   @keyframes dropZIndex {
@@ -268,13 +261,13 @@ const StyledWrapper = styled.div`
   .led-strip {
     display: flex;
     flex-direction: column;
-    gap: 4px;
-    padding: 4px 0;
+    gap: 8px;
+    padding: 0 4px;
   }
 
   .led {
-    width: 6px;
-    height: 6px;
+    width: 8px;
+    height: 8px;
     border-radius: 50%;
     animation: ${ledBlink} 2s ease-in-out infinite;
   }
@@ -306,16 +299,14 @@ const StyledWrapper = styled.div`
     flex: 1;
     position: relative;
     overflow: hidden;
-    height: 38px;
+    height: 48px;
     display: flex;
     align-items: center;
-    padding: 0 12px;
-    background: #050208;
-    border-radius: 6px;
-    border: 1.5px solid rgba(168,85,247,0.5);
-    box-shadow:
-      inset 0 0 15px rgba(168,85,247,0.15),
-      0 0 8px rgba(168,85,247,0.2);
+    padding: 0 16px;
+    background: #090514;
+    border-radius: 8px;
+    border: 1.5px solid rgba(168,85,247,0.4);
+    box-shadow: inset 0 0 20px rgba(168,85,247,0.05);
   }
 
   .lcd-scanline {
@@ -331,13 +322,13 @@ const StyledWrapper = styled.div`
 
   .lcd-text {
     font-family: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
-    font-size: 0.76em;
+    font-size: 0.9em;
     font-weight: 700;
     letter-spacing: 0.08em;
-    color: #22d3ee;
+    color: #00f0ff;
     text-shadow:
-      0 0 5px rgba(34,211,238,0.8),
-      0 0 15px rgba(34,211,238,0.4);
+      0 0 8px rgba(0,240,255,0.6),
+      0 0 20px rgba(0,240,255,0.3);
     z-index: 1;
     white-space: nowrap;
     display: flex;
@@ -369,30 +360,26 @@ const StyledWrapper = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 10px 18px;
-    border: 1.5px solid rgba(168,85,247,0.6);
-    border-radius: 10px;
-    background: linear-gradient(135deg, #2d2054 0%, #1a1335 100%);
+    padding: 12px 24px;
+    border: 1.5px solid rgba(168,85,247,0.5);
+    border-radius: 12px;
+    background: rgba(168,85,247,0.05);
     cursor: pointer;
     transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    box-shadow:
-      0 0 12px rgba(168,85,247,0.2),
-      inset 0 1px 0 rgba(255,255,255,0.06);
+    box-shadow: none;
 
     &:hover:not(:disabled) {
       border-color: #a855f7;
+      background: rgba(168,85,247,0.1);
       box-shadow:
-        0 0 20px rgba(168,85,247,0.4),
-        0 0 40px rgba(168,85,247,0.15),
-        inset 0 1px 0 rgba(255,255,255,0.1);
+        0 0 20px rgba(168,85,247,0.2),
+        inset 0 0 10px rgba(168,85,247,0.1);
       transform: translateY(-1px);
     }
 
     &:active:not(:disabled) {
       transform: translateY(1px) scale(0.97);
-      box-shadow:
-        0 0 8px rgba(168,85,247,0.3),
-        inset 0 2px 4px rgba(0,0,0,0.3);
+      box-shadow: none;
     }
 
     &:disabled {
@@ -404,18 +391,18 @@ const StyledWrapper = styled.div`
   .print-btn-inner {
     display: flex;
     align-items: center;
-    gap: 6px;
-    color: #c4b5fd;
+    gap: 8px;
+    color: #e0d4fc;
     font-family: 'Inter', sans-serif;
-    font-size: 0.7em;
+    font-size: 0.8em;
     font-weight: 700;
     letter-spacing: 0.2em;
     z-index: 1;
   }
 
   .print-icon {
-    width: 16px;
-    height: 16px;
+    width: 18px;
+    height: 18px;
     color: #a855f7;
     filter: drop-shadow(0 0 4px rgba(168,85,247,0.6));
   }
@@ -434,32 +421,25 @@ const StyledWrapper = styled.div`
   .paper-slot {
     position: relative;
     z-index: 2;
-    height: 12px;
-    margin: 0 20px;
-    background: #0a0716;
-    border-left: 1px solid rgba(168,85,247,0.25);
-    border-right: 1px solid rgba(168,85,247,0.25);
+    height: 16px;
+    margin: 0 12px;
+    background: #06030c;
+    border-radius: 4px;
+    box-shadow: inset 0 6px 12px rgba(0,0,0,1);
   }
 
   .slot-inner {
-    position: absolute;
-    top: 2px;
-    left: 15px;
-    right: 15px;
-    height: 8px;
-    background: #050208;
-    border-radius: 0 0 4px 4px;
-    box-shadow: inset 0 3px 6px rgba(0,0,0,0.8);
+    display: none;
   }
 
   .slot-glow {
     position: absolute;
     bottom: 0;
-    left: 20%;
-    right: 20%;
+    left: 10%;
+    right: 10%;
     height: 2px;
-    background: linear-gradient(90deg, transparent, rgba(168,85,247,0.4), transparent);
-    filter: blur(1px);
+    background: linear-gradient(90deg, transparent, rgba(168,85,247,0.3), transparent);
+    filter: blur(2px);
     animation: ${pulseGlow} 2s ease-in-out infinite;
   }
 
@@ -467,40 +447,39 @@ const StyledWrapper = styled.div`
   .machine-body {
     position: relative;
     z-index: 2;
-    padding: 12px 20px 16px;
-    background: linear-gradient(175deg, #1a1335 0%, #13102a 50%, #0e0b1f 100%);
-    border-radius: 0 0 16px 16px;
-    border: 1px solid rgba(168,85,247,0.25);
+    padding: 24px 20px;
+    background: linear-gradient(180deg, #150f28 0%, #110c1e 100%);
+    border-radius: 0 0 20px 20px;
+    border: 1.5px solid rgba(168,85,247,0.3);
     border-top: none;
-    box-shadow:
-      0 16px 40px rgba(0,0,0,0.5),
-      0 0 30px rgba(168,85,247,0.08),
-      inset 0 -1px 0 rgba(255,255,255,0.03);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.6);
   }
 
   .vent-lines {
     display: flex;
-    gap: 5px;
-    margin-bottom: 8px;
+    justify-content: center;
+    margin-bottom: 24px;
+    padding: 0 20px;
   }
 
   .vent {
-    flex: 1;
-    height: 2px;
-    border-radius: 2px;
-    background: linear-gradient(90deg, transparent 10%, rgba(168,85,247,0.15) 50%, transparent 90%);
+    width: 100%;
+    height: 3px;
+    border-radius: 3px;
+    background: linear-gradient(90deg, transparent 0%, rgba(168,85,247,0.2) 20%, rgba(168,85,247,0.2) 80%, transparent 100%);
+    box-shadow: inset 0 1px 2px rgba(0,0,0,0.8);
   }
 
   .brand-label {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 6px;
+    gap: 8px;
     font-family: 'Inter', sans-serif;
-    font-size: 0.55em;
+    font-size: 0.6em;
     font-weight: 700;
-    letter-spacing: 0.35em;
-    color: rgba(168,85,247,0.35);
+    letter-spacing: 0.4em;
+    color: rgba(168,85,247,0.6);
     text-transform: uppercase;
   }
 

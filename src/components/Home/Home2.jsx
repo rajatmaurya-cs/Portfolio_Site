@@ -10,39 +10,56 @@ function Home2() {
           </h1>
 
           <p className="pt-[50px] text-left text-[1.2em]">
-            I'm a passionate Software Engineer and Computer Science
-            undergraduate who enjoys building scalable, high-performance web
-            applications and solving real-world problems.
+            I'm a Software Engineer and Computer Science undergraduate with a
+            strong passion for building scalable, secure, and production-ready
+            web applications. I enjoy solving complex backend challenges and
+            transforming ideas into high-quality software.
             <br />
             <br />
-            My core tech stack includes
+            My core programming languages are
+            <i>
+              <b className="text-[#c770f0]"> C, C++, JavaScript, and TypeScript</b>
+            </i>
+            , which form the foundation for everything I build.
+            <br />
+            <br />
+            My expertise includes designing
             <i>
               <b className="text-[#c770f0]">
                 {" "}
-                Next.js, TypeScript, React.js, Node.js, Express.js, MongoDB, Prisma, PostgreSql,
-                Redis, JavaScript, Tailwind CSS, React Query, REST APIs, and
-                caching strategies.
+                scalable REST APIs, Authentication & Authorization (JWT/OAuth),
+                Redis Caching, Background Jobs with BullMQ, Database Design,
+                Prisma ORM, PostgreSQL, MongoDB, React Query, and AI-powered
+                application development.
               </b>
             </i>
             <br />
             <br />
-            I'm particularly interested in
+            I'm experienced in building
             <i>
               <b className="text-[#c770f0]">
                 {" "}
-                Full-Stack Development, Backend Engineering, System Design, and
-                AI-powered applications.
+                secure authentication systems, optimized data fetching,
+                production-grade backend architectures, automated testing, and
+                CI/CD pipelines using GitHub Actions.
               </b>
             </i>
             <br />
             <br />
-            I enjoy turning ideas into impactful products while continuously
-            improving my software engineering and computer science skills.
+            My primary focus is
+            <i>
+              <b className="text-[#c770f0]">
+                {" "}
+                Backend Engineering, Full-Stack Development, Distributed
+                Systems, System Design, Performance Optimization, and AI-driven
+                products.
+              </b>
+            </i>
             <br />
             <br />
-            Whenever possible, I love building products with
-            <b className="text-[#c770f0]"> Next.js, TypeScript, Node.js </b>
-            and modern React technologies.
+            I believe great software is built by combining clean architecture,
+            performance, scalability, and an exceptional user experience—and
+            that's what I strive to deliver in every project.
           </p>
         </div>
       </div>

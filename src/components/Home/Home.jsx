@@ -3,7 +3,7 @@ import homeLogo from "../../Assets/home-main.svg";
 import Particle from "../Particle";
 import Home2 from "./Home2";
 import Type from "./Type";
-import AvatarFrame from "../../../components/avatarframe.jsx";
+import SmartWatch from "../../../components/SamrtWatch";
 import Contact from "../../../components/contact.jsx";
 
 import Loader from "../../../components/cat.jsx";
@@ -52,7 +52,12 @@ function Home() {
                 className="mx-auto h-auto max-h-[450px] w-full"
               /> */}
               <div className="mx-auto flex h-[320px] w-full max-w-[520px] items-center justify-center sm:h-[420px] md:h-[500px] lg:h-[560px]">
-                <AvatarFrame />
+                <div className="relative">
+                  <div className="absolute inset-0 bg-[#c770f0] opacity-20 blur-[100px] rounded-full pointer-events-none"></div>
+                  <div className="relative z-10 scale-90 origin-center transition-transform duration-300 hover:scale-95">
+                    <SmartWatch />
+                  </div>
+                </div>
               </div>
             </div>
           </div>
