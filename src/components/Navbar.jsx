@@ -24,7 +24,18 @@ function NavBar() {
 
   useEffect(() => {
     window.addEventListener("scroll", scrollHandler);
-    return () => window.removeEventListener("scroll", scrollHandler);
+    
+    const handleResize = () => {
+      if (window.innerWidth >= 768) {
+        updateExpanded(false);
+      }
+    };
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("scroll", scrollHandler);
+      window.removeEventListener("resize", handleResize);
+    };
   }, []);
 
   const navLinkClass =
