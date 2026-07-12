@@ -18,10 +18,18 @@ const TicketMachine = () => {
 
     setTimeout(() => {
       if (machineRef.current) {
-        const receiptHeight = 450;
-        const receiptCenter = machineRef.current.getBoundingClientRect().top + window.pageYOffset + 60 + (receiptHeight / 2);
-        const y = receiptCenter - (window.innerHeight / 2);
-        window.scrollTo({ top: y, behavior: 'smooth' });
+        const receiptElement = machineRef.current.querySelector('.receipt');
+        if (receiptElement) {
+          const rect = receiptElement.getBoundingClientRect();
+          const absoluteTop = rect.top + window.pageYOffset;
+          const center = absoluteTop + (rect.height / 2);
+          const y = center - (window.innerHeight / 2);
+          window.scrollTo({ top: y, behavior: 'smooth' });
+        } else {
+          // Fallback if element not found
+          const y = machineRef.current.getBoundingClientRect().top + window.pageYOffset - 80;
+          window.scrollTo({ top: y, behavior: 'smooth' });
+        }
       }
     }, 2800);
 
