@@ -39,7 +39,7 @@ function NavBar() {
   }, []);
 
   const navLinkClass =
-    "relative z-[1] px-4 py-3 text-white no-underline transition-all duration-300 after:absolute after:bottom-[1px] after:left-0 after:-z-[1] after:block after:h-[5px] after:w-0 after:rounded-2xl after:bg-[#c95bf5] after:transition-all after:duration-300 hover:after:w-full";
+    "relative z-[1] px-4 py-3 text-white no-underline transition-all duration-300 after:absolute after:bottom-[1px] after:left-0 after:-z-[1] after:block after:h-[5px] after:w-0 after:rounded-2xl after:bg-[#c95bf5] after:transition-all after:duration-300 hover:after:w-full flex items-center gap-2 justify-center md:justify-start";
 
   return (
     <nav
@@ -77,23 +77,23 @@ function NavBar() {
             expand ? "flex" : "hidden"
           }`}
         >
-          <li className="md:ml-5 w-full">
-            <Link href="/" onClick={() => updateExpanded(false)} className={navLinkClass + " block w-full"}>
+          <li className="md:ml-5 w-full md:w-auto">
+            <Link href="/" onClick={() => updateExpanded(false)} className={navLinkClass}>
               <AiOutlineHome className="mb-[2px] inline-block" /> Home
             </Link>
           </li>
-          <li className="md:ml-5 w-full">
-            <Link href="/about" onClick={() => updateExpanded(false)} className={navLinkClass + " block w-full"}>
+          <li className="md:ml-5 w-full md:w-auto">
+            <Link href="/about" onClick={() => updateExpanded(false)} className={navLinkClass}>
               <AiOutlineUser className="mb-[2px] inline-block" /> About
             </Link>
           </li>
-          <li className="md:ml-5 w-full">
-            <Link href="/project" onClick={() => updateExpanded(false)} className={navLinkClass + " block w-full"}>
+          <li className="md:ml-5 w-full md:w-auto">
+            <Link href="/project" onClick={() => updateExpanded(false)} className={navLinkClass}>
               <AiOutlineFundProjectionScreen className="mb-[2px] inline-block" /> Projects
             </Link>
           </li>
-          <li className="md:ml-5 w-full">
-            <Link href="/resume" onClick={() => updateExpanded(false)} className={navLinkClass + " block w-full"}>
+          <li className="md:ml-5 w-full md:w-auto">
+            <Link href="/resume" onClick={() => updateExpanded(false)} className={navLinkClass}>
               <CgFileDocument className="mb-[2px] inline-block" /> Resume
             </Link>
           </li>
