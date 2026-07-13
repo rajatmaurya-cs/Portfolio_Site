@@ -11,10 +11,35 @@ const SmartWatch = () => {
     return () => clearInterval(timer);
   }, []);
 
-  const hours = time.getHours().toString().padStart(2, '0');
-  const minutes = time.getMinutes().toString().padStart(2, '0');
-  const seconds = time.getSeconds().toString().padStart(2, '0');
-  const sysTime = `${time.getHours()}:${minutes}`;
+  // Helper to format time in Indian Standard Time (IST / Asia/Kolkata)
+  const getISTTime = (d) => {
+    try {
+      const formatter = new Intl.DateTimeFormat('en-US', {
+        timeZone: 'Asia/Kolkata',
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit',
+        hour12: false
+      });
+      const parts = formatter.formatToParts(d);
+      const h = parts.find(p => p.type === 'hour').value;
+      const m = parts.find(p => p.type === 'minute').value;
+      const s = parts.find(p => p.type === 'second').value;
+      return { h, m, s };
+    } catch (e) {
+      return {
+        h: d.getHours().toString().padStart(2, '0'),
+        m: d.getMinutes().toString().padStart(2, '0'),
+        s: d.getSeconds().toString().padStart(2, '0'),
+      };
+    }
+  };
+
+  const ist = getISTTime(time);
+  const hours = ist.h;
+  const minutes = ist.m;
+  const seconds = ist.s;
+  const sysTime = `${hours}:${minutes}`;
 
   const handleMouseMove = (e) => {
     if (!watchRef.current) return;
