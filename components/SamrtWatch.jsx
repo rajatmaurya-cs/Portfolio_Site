@@ -14,7 +14,9 @@ const SmartWatch = () => {
     return () => clearInterval(timer);
   }, []);
 
-  const hours = mounted ? time.getHours().toString().padStart(2, '0') : '--';
+  const h24 = mounted ? time.getHours() : 0;
+  const h12 = h24 % 12 || 12; // Convert 0 to 12 for midnight
+  const hours = mounted ? h12.toString().padStart(2, '0') : '--';
   const minutes = mounted ? time.getMinutes().toString().padStart(2, '0') : '--';
   const seconds = mounted ? time.getSeconds().toString().padStart(2, '0') : '--';
   const sysTime = mounted ? `${hours}:${minutes}` : '--:--';
