@@ -45,7 +45,7 @@ function Projects() {
                 </ul>
               </div>
             }
-            ghLink="https://veyra-creator-platform.vercel.app/Home"
+            ghLink="https://github.com/rajatmaurya-cs/Veyra-creator-platform"
           />
 
           <ProjectCard
