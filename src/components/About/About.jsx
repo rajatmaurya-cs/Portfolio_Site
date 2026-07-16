@@ -5,7 +5,6 @@ import Techstack from "./Techstack";
 import Aboutcard from "./AboutCard";
 import laptopImg from "../../Assets/about.png";
 import Toolstack from "./Toolstack";
-import AppleVisionPro from "../../../components/applevision";
 
 function About() {
   return (
@@ -27,9 +26,6 @@ function About() {
 
           <div className="flex flex-wrap items-start justify-center gap-6 xl:flex-nowrap">
             <div className="flex min-w-0 flex-1 flex-col items-center">
-              <div className="mb-4 transform hover:scale-110 transition-transform duration-300">
-                <AppleVisionPro />
-              </div>
               <h1 className="pb-[10px] pt-[10px] text-[2.3em] font-medium text-white">
                 Professional <strong className="text-[#c770f0]">Skillset</strong>
               </h1>
