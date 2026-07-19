@@ -16,7 +16,6 @@ import {
 import { FaReact, FaGitAlt } from "react-icons/fa";
 import { MdWork, MdOutlineOpenInNew } from "react-icons/md";
 import smallFareLogo from "../../Assets/smallFare.png";
-import Butterfly from "../../../components/butterfly";
 
 /* ─────────────────── Experience Data ─────────────────── */
 const experiences = [
@@ -96,10 +95,7 @@ function Experience() {
   return (
     <div className="relative pb-[30px] pt-[60px] md:pt-[100px] text-white min-h-screen">
       <Particle />
-      <div className="mx-auto max-w-6xl px-4 relative">
-        <div className="absolute top-[0px] md:top-[30px] right-[5%] md:right-[15%] opacity-90 scale-[1.2] md:scale-[1.6] z-10 hover:scale-[1.8] transition-transform duration-500 hidden md:block">
-          <Butterfly />
-        </div>
+      <div className="mx-auto max-w-6xl px-4">
         {/* ── Section Header ── */}
         <div className="mb-12 text-center relative">
           <h1 className="pb-[10px] pt-[10px] text-[2.3em] font-medium text-white">
