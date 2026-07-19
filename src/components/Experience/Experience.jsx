@@ -165,11 +165,11 @@ function Experience() {
                       <span className="type-badge">{item.type}</span>
                     </div>
                     <div className="meta-row">
-                      <span className="meta-item">
+                      <span className="meta-item calendar">
                         <AiOutlineCalendar /> {item.duration} ·{" "}
                         {item.length}
                       </span>
-                      <span className="meta-item">
+                      <span className="meta-item location">
                         <AiOutlineEnvironment /> {item.location}
                       </span>
                     </div>
@@ -595,14 +595,24 @@ const StyledExperience = styled.div`
   .meta-item {
     display: flex;
     align-items: center;
-    gap: 5px;
-    font-size: 0.85em;
-    color: rgba(255, 255, 255, 0.5);
+    gap: 6px;
+    font-size: 0.9em;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.85);
 
     svg {
-      font-size: 1em;
-      color: rgba(199, 112, 240, 0.7);
+      font-size: 1.2em;
     }
+  }
+
+  .meta-item.calendar svg {
+    color: #ff9800;
+    filter: drop-shadow(0 0 5px rgba(255, 152, 0, 0.4));
+  }
+
+  .meta-item.location svg {
+    color: #4caf50;
+    filter: drop-shadow(0 0 5px rgba(76, 175, 80, 0.4));
   }
 
   /* ── Divider ── */
