@@ -95,153 +95,134 @@ function Experience() {
   return (
     <div className="relative pb-[30px] pt-[60px] md:pt-[100px] text-white min-h-screen">
       <Particle />
-      <div className="mx-auto max-w-6xl px-4">
+      <div className="mx-auto max-w-4xl px-4">
         {/* ── Section Header ── */}
         <div className="mb-12 text-center relative">
           <h1 className="pb-[10px] pt-[10px] text-[2.3em] font-medium text-white">
             Work{" "}
             <strong className="text-[#c770f0]">Experience</strong>
           </h1>
-          <p className="mx-auto max-w-xl text-[rgba(255,255,255,0.55)] text-[0.95em]">
-            My professional journey building production-grade web
-            applications.
-          </p>
         </div>
 
-        {/* ── Timeline ── */}
+        {/* ── Experience Container ── */}
         <StyledExperience $mounted={mounted}>
-          {/* Timeline vertical line */}
-          <div className="timeline-line" />
-
           {experiences.map((item, idx) => (
             <div
               key={item.id}
-              className={`timeline-node ${activeExp === idx ? "active" : ""}`}
-              onClick={() => setActiveExp(idx)}
+              className={`exp-card ${activeExp === idx ? "active" : ""}`}
+              ref={activeExp === idx ? cardRef : null}
+              onMouseMove={activeExp === idx ? handleMouseMove : undefined}
+              onMouseLeave={
+                activeExp === idx ? handleMouseLeave : undefined
+              }
             >
-              {/* Dot on timeline */}
-              <div className="timeline-dot">
-                <div className="dot-inner" />
-                <div className="dot-pulse" />
+              {/* Background Particles */}
+              <div className="card-particles">
+                <div className="particle p1" />
+                <div className="particle p2" />
+                <div className="particle p3" />
+                <div className="particle p4" />
+                <div className="particle p5" />
               </div>
 
-              {/* Experience Card */}
-              <div
-                className="exp-card"
-                ref={activeExp === idx ? cardRef : null}
-                onMouseMove={activeExp === idx ? handleMouseMove : undefined}
-                onMouseLeave={
-                  activeExp === idx ? handleMouseLeave : undefined
-                }
-              >
-                {/* Background Particles */}
-                <div className="card-particles">
-                  <div className="particle p1" />
-                  <div className="particle p2" />
-                  <div className="particle p3" />
-                  <div className="particle p4" />
-                  <div className="particle p5" />
+              {/* Card Header */}
+              <div className="card-header">
+                <div className="company-logo-wrapper">
+                  <img
+                    src={
+                      item.logo?.src ||
+                      item.logo ||
+                      "/placeholder.png"
+                    }
+                    alt={item.company}
+                    className="company-logo"
+                  />
+                  <div className="logo-ring" />
                 </div>
 
-                {/* Card Header */}
-                <div className="card-header">
-                  <div className="company-logo-wrapper">
-                    <img
-                      src={
-                        item.logo?.src ||
-                        item.logo ||
-                        "/placeholder.png"
-                      }
-                      alt={item.company}
-                      className="company-logo"
-                    />
-                    <div className="logo-ring" />
+                <div className="header-info">
+                  <h2 className="role-title">{item.role}</h2>
+                  <div className="company-row">
+                    <span className="company-name">{item.company}</span>
+                    <span className="type-badge">{item.type}</span>
                   </div>
+                  <div className="meta-row">
+                    <span className="meta-item calendar">
+                      <AiOutlineCalendar /> {item.duration} ·{" "}
+                      {item.length}
+                    </span>
+                    <span className="meta-item location">
+                      <AiOutlineEnvironment /> {item.location}
+                    </span>
+                  </div>
+                </div>
+              </div>
 
-                  <div className="header-info">
-                    <h2 className="role-title">{item.role}</h2>
-                    <div className="company-row">
-                      <span className="company-name">{item.company}</span>
-                      <span className="type-badge">{item.type}</span>
+              {/* Divider */}
+              <div className="card-divider" />
+
+              {/* Summary */}
+              <p className="summary-text">{item.summary}</p>
+
+              {/* Highlights */}
+              <div className="highlights-section">
+                <h3 className="section-label">Key Contributions</h3>
+                <ul className="highlights-list">
+                  {item.highlights.map((h, i) => (
+                    <li
+                      key={i}
+                      className={`highlight-item ${
+                        visibleHighlights.includes(i) ? "visible" : ""
+                      }`}
+                    >
+                      <span className="highlight-dot" />
+                      {h}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              {/* Tech Stack */}
+              <div className="tech-section">
+                <h3 className="section-label">Tech Stack</h3>
+                <div className="tech-pills">
+                  {item.techStack.map((t, i) => (
+                    <div
+                      key={i}
+                      className="tech-pill"
+                      style={{ "--pill-color": t.color }}
+                    >
+                      <span className="tech-icon">{t.icon}</span>
+                      <span>{t.name}</span>
                     </div>
-                    <div className="meta-row">
-                      <span className="meta-item calendar">
-                        <AiOutlineCalendar /> {item.duration} ·{" "}
-                        {item.length}
-                      </span>
-                      <span className="meta-item location">
-                        <AiOutlineEnvironment /> {item.location}
-                      </span>
-                    </div>
-                  </div>
+                  ))}
                 </div>
+              </div>
 
-                {/* Divider */}
-                <div className="card-divider" />
+              {/* Certificate Button */}
+              <div className="certificate-section">
+                <button
+                  className="cert-btn"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setShowCertificate(true);
+                  }}
+                >
+                  <AiOutlineSafetyCertificate className="cert-icon" />
+                  <span>View Letter of Appreciation</span>
+                  <MdOutlineOpenInNew className="open-icon" />
+                </button>
 
-                {/* Summary */}
-                <p className="summary-text">{item.summary}</p>
-
-                {/* Highlights */}
-                <div className="highlights-section">
-                  <h3 className="section-label">Key Contributions</h3>
-                  <ul className="highlights-list">
-                    {item.highlights.map((h, i) => (
-                      <li
-                        key={i}
-                        className={`highlight-item ${
-                          visibleHighlights.includes(i) ? "visible" : ""
-                        }`}
-                      >
-                        <span className="highlight-dot" />
-                        {h}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-                {/* Tech Stack */}
-                <div className="tech-section">
-                  <h3 className="section-label">Tech Stack</h3>
-                  <div className="tech-pills">
-                    {item.techStack.map((t, i) => (
-                      <div
-                        key={i}
-                        className="tech-pill"
-                        style={{ "--pill-color": t.color }}
-                      >
-                        <span className="tech-icon">{t.icon}</span>
-                        <span>{t.name}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Certificate Button */}
-                <div className="certificate-section">
-                  <button
-                    className="cert-btn"
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      setShowCertificate(true);
-                    }}
-                  >
-                    <AiOutlineSafetyCertificate className="cert-icon" />
-                    <span>View Letter of Appreciation</span>
-                    <MdOutlineOpenInNew className="open-icon" />
-                  </button>
-
-                  <a
-                    href={item.certificatePdf}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="download-btn"
-                    onClick={(e) => e.stopPropagation()}
-                  >
-                    <AiOutlineDownload />
-                    <span>Download Certificate</span>
-                  </a>
-                </div>
+                <a
+                  href={item.certificatePdf}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="download-btn"
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  <AiOutlineDownload />
+                  <span>Download Certificate</span>
+                </a>
               </div>
             </div>
           ))}
@@ -293,9 +274,41 @@ const float = keyframes`
   50% { transform: translateY(-8px); }
 `;
 
-const pulseRing = keyframes`
-  0% { transform: scale(1); opacity: 0.6; }
-  100% { transform: scale(2.2); opacity: 0; }
+const beamMove = keyframes`
+  0% { transform: translateY(-100%); opacity: 0; }
+  50% { opacity: 1; }
+  100% { transform: translateY(100vh); opacity: 0; }
+`;
+
+const pingSharp = keyframes`
+  0% { transform: scale(1); opacity: 0.8; }
+  100% { transform: scale(2.5); opacity: 0; }
+`;
+
+const dotPulse = keyframes`
+  0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(199, 112, 240, 0.7), 0 0 12px rgba(199, 112, 240, 0.5); }
+  50% { transform: scale(1.15); box-shadow: 0 0 0 8px rgba(199, 112, 240, 0), 0 0 20px rgba(199, 112, 240, 0.9); }
+`;
+
+const dotRingExpand = keyframes`
+  0% { transform: scale(0.6); opacity: 0.9; border-color: rgba(199,112,240,0.9); }
+  100% { transform: scale(2.2); opacity: 0; border-color: rgba(0,242,254,0); }
+`;
+
+const sparkOrbit = keyframes`
+  0% { transform: rotate(var(--angle)) translateX(var(--r)) scale(1); opacity: 1; }
+  60% { opacity: 1; }
+  100% { transform: rotate(calc(var(--angle) + 360deg)) translateX(var(--r)) scale(0.4); opacity: 0; }
+`;
+
+const dotCoreGlow = keyframes`
+  0%, 100% { background: radial-gradient(circle, #ffffff, #c770f0); box-shadow: 0 0 10px 3px rgba(199,112,240,0.8); }
+  50% { background: radial-gradient(circle, #ffffff, #00f2fe); box-shadow: 0 0 18px 6px rgba(0,242,254,0.9); }
+`;
+
+const smoothFlow = keyframes`
+  0% { background-position: 0% -150%; }
+  100% { background-position: 0% 250%; }
 `;
 
 const shimmerLine = keyframes`
@@ -330,30 +343,10 @@ const StyledExperience = styled.div`
   position: relative;
   max-width: 900px;
   margin: 0 auto;
-  padding: 0 0 40px 60px;
+  padding: 0 0 40px 0;
 
   @media (max-width: 640px) {
-    padding-left: 30px;
-  }
-
-  .timeline-line {
-    position: absolute;
-    top: 0;
-    left: 28px;
-    width: 3px;
-    height: 100%;
-    background: linear-gradient(
-      180deg,
-      transparent 0%,
-      rgba(199, 112, 240, 0.5) 15%,
-      rgba(199, 112, 240, 0.5) 85%,
-      transparent 100%
-    );
-    border-radius: 2px;
-
-    @media (max-width: 640px) {
-      left: 13px;
-    }
+    padding-left: 0;
   }
 
   .timeline-node {
@@ -365,68 +358,13 @@ const StyledExperience = styled.div`
     }
   }
 
-  .timeline-dot {
-    position: absolute;
-    left: -46px;
-    top: 32px;
-    width: 20px;
-    height: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 3;
-
-    @media (max-width: 640px) {
-      left: -24px;
-      width: 16px;
-      height: 16px;
-    }
-  }
-
-  .dot-inner {
-    width: 14px;
-    height: 14px;
-    border-radius: 50%;
-    background: linear-gradient(135deg, #c770f0, #7b2fff);
-    border: 2.5px solid #1b1a2e;
-    z-index: 2;
-    transition: transform 0.3s ease;
-
-    @media (max-width: 640px) {
-      width: 10px;
-      height: 10px;
-    }
-  }
-
-  .active .dot-inner {
-    transform: scale(1.3);
-  }
-
-  .dot-pulse {
-    position: absolute;
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    border: 2px solid rgba(199, 112, 240, 0.5);
-    z-index: 1;
-    opacity: 0;
-
-    @media (max-width: 640px) {
-      width: 16px;
-      height: 16px;
-    }
-  }
-
-  .active .dot-pulse {
-    animation: ${pulseRing} 2s ease-out infinite;
-  }
-
   /* ── Card ── */
   .exp-card {
     position: relative;
-    padding: 32px 36px;
-    background: rgba(20, 10, 40, 0.65);
-    border: 1.5px solid rgba(199, 112, 240, 0.2);
+    padding: 40px 48px;
+    text-align: left; /* Fixes text centering issue from parent */
+    background: rgba(15, 15, 20, 0.65); /* Darker, less purple background */
+    border: 1px solid rgba(255, 255, 255, 0.08); /* Subtle glass border */
     border-radius: 20px;
     backdrop-filter: blur(16px);
     overflow: hidden;
@@ -435,19 +373,19 @@ const StyledExperience = styled.div`
     cursor: pointer;
 
     &:hover {
-      border-color: rgba(199, 112, 240, 0.5);
-      box-shadow: 0 20px 60px rgba(109, 32, 197, 0.25),
-        0 0 40px rgba(199, 112, 240, 0.08);
+      border-color: rgba(199, 112, 240, 0.35);
+      box-shadow: 0 10px 40px rgba(109, 32, 197, 0.15),
+        0 0 30px rgba(199, 112, 240, 0.05);
     }
 
     @media (max-width: 640px) {
-      padding: 22px 18px;
+      padding: 28px 24px;
       border-radius: 16px;
     }
   }
 
   .active .exp-card {
-    border-color: rgba(199, 112, 240, 0.45);
+    border-color: rgba(199, 112, 240, 0.3);
     animation: ${breathGlow} 4s ease-in-out infinite;
   }
 
@@ -478,8 +416,8 @@ const StyledExperience = styled.div`
   .card-header {
     display: flex;
     align-items: flex-start;
-    gap: 20px;
-    margin-bottom: 20px;
+    gap: 24px;
+    margin-bottom: 24px;
 
     @media (max-width: 480px) {
       flex-direction: column;
@@ -600,8 +538,8 @@ const StyledExperience = styled.div`
     font-weight: 500;
     color: rgba(255, 255, 255, 0.85);
     padding: 6px 14px;
-    background: rgba(20, 10, 40, 0.8);
-    border: 1px solid rgba(199, 112, 240, 0.2);
+    background: rgba(20, 20, 25, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 20px;
     backdrop-filter: blur(8px);
     transition: all 0.3s ease;
@@ -629,7 +567,7 @@ const StyledExperience = styled.div`
   /* ── Divider ── */
   .card-divider {
     height: 1px;
-    margin: 18px 0;
+    margin: 24px 0;
     background: linear-gradient(
       90deg,
       transparent,
@@ -642,10 +580,10 @@ const StyledExperience = styled.div`
 
   /* ── Summary ── */
   .summary-text {
-    font-size: 0.92em;
-    line-height: 1.7;
-    color: rgba(255, 255, 255, 0.7);
-    margin-bottom: 22px;
+    font-size: 0.95em;
+    line-height: 1.8;
+    color: rgba(255, 255, 255, 0.75);
+    margin-bottom: 28px;
   }
 
   /* ── Section Label ── */
@@ -655,7 +593,7 @@ const StyledExperience = styled.div`
     text-transform: uppercase;
     letter-spacing: 0.12em;
     color: rgba(199, 112, 240, 0.8);
-    margin-bottom: 12px;
+    margin-bottom: 24px;
     display: flex;
     align-items: center;
     gap: 8px;
@@ -676,10 +614,10 @@ const StyledExperience = styled.div`
   .highlights-list {
     list-style: none;
     padding: 0;
-    margin: 0 0 24px;
+    margin: 0 0 32px;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 12px;
   }
 
   .highlight-item {
@@ -730,8 +668,8 @@ const StyledExperience = styled.div`
     gap: 7px;
     padding: 6px 14px;
     border-radius: 20px;
-    background: rgba(20, 10, 40, 0.8);
-    border: 1px solid rgba(199, 112, 240, 0.25);
+    background: rgba(20, 20, 25, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     font-size: 0.82em;
     font-weight: 500;
     color: rgba(255, 255, 255, 0.8);
