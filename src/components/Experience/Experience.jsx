@@ -743,7 +743,7 @@ const StyledExperience = styled.div`
   /* ── Certificate ── */
   .certificate-section {
     display: flex;
-    gap: 14px;
+    gap: 16px;
     flex-wrap: wrap;
 
     @media (max-width: 480px) {
@@ -751,41 +751,83 @@ const StyledExperience = styled.div`
     }
   }
 
+  @keyframes animatedGradientBorder {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 300% 50%; }
+  }
+
   .cert-btn {
+    position: relative;
     display: flex;
     align-items: center;
-    gap: 8px;
-    padding: 10px 22px;
-    border-radius: 12px;
-    border: 1.5px solid rgba(199, 112, 240, 0.4);
-    background: linear-gradient(
-      135deg,
-      rgba(109, 32, 197, 0.25),
-      rgba(199, 112, 240, 0.1)
-    );
-    color: #c770f0;
-    font-size: 0.88em;
+    gap: 10px;
+    padding: 12px 28px;
+    border-radius: 50px;
+    border: none;
+    color: #fff;
+    font-size: 0.95em;
     font-weight: 600;
     cursor: pointer;
-    transition: all 0.3s ease;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    box-shadow: 0 4px 15px rgba(199, 112, 240, 0.15);
+    z-index: 1;
+    
+    /* Animated Gradient Background */
+    &::before {
+      content: "";
+      position: absolute;
+      inset: -4px;
+      border-radius: 50px;
+      background: linear-gradient(90deg, #c770f0, #00f2fe, #c770f0, #00f2fe);
+      background-size: 300% 100%;
+      z-index: -2;
+      animation: animatedGradientBorder 3s linear infinite;
+      transition: filter 0.4s ease;
+    }
+
+    /* Inner Dark Button Surface */
+    &::after {
+      content: "";
+      position: absolute;
+      inset: 2px;
+      border-radius: 48px;
+      background: rgba(30, 15, 50, 0.95);
+      z-index: -1;
+      transition: background 0.4s ease;
+    }
 
     &:hover {
-      border-color: #c770f0;
-      background: linear-gradient(
-        135deg,
-        rgba(109, 32, 197, 0.4),
-        rgba(199, 112, 240, 0.2)
-      );
-      box-shadow: 0 8px 25px rgba(199, 112, 240, 0.25);
-      transform: translateY(-2px);
+      transform: translateY(-4px);
+      box-shadow: 0 12px 30px rgba(199, 112, 240, 0.4), 0 0 20px rgba(0, 242, 254, 0.3);
+    }
+
+    &:hover::before {
+      filter: blur(2px);
+    }
+
+    &:hover::after {
+      background: rgba(40, 20, 70, 0.85);
     }
 
     .cert-icon {
-      font-size: 1.3em;
+      font-size: 1.4em;
+      color: #00f2fe;
+      transition: transform 0.4s ease;
     }
+
+    &:hover .cert-icon {
+      transform: scale(1.15) rotate(-10deg);
+    }
+
     .open-icon {
-      font-size: 0.9em;
-      opacity: 0.7;
+      font-size: 1.1em;
+      color: #c770f0;
+      transition: transform 0.4s ease;
+    }
+
+    &:hover .open-icon {
+      transform: scale(1.1) translate(2px, -2px);
     }
   }
 
@@ -793,22 +835,32 @@ const StyledExperience = styled.div`
     display: flex;
     align-items: center;
     gap: 8px;
-    padding: 10px 22px;
-    border-radius: 12px;
+    padding: 12px 28px;
+    border-radius: 50px;
     border: 1.5px solid rgba(255, 255, 255, 0.15);
     background: rgba(255, 255, 255, 0.04);
-    color: rgba(255, 255, 255, 0.65);
-    font-size: 0.88em;
+    color: rgba(255, 255, 255, 0.75);
+    font-size: 0.9em;
     font-weight: 500;
     text-decoration: none;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    backdrop-filter: blur(5px);
 
     &:hover {
-      border-color: rgba(255, 255, 255, 0.3);
-      color: rgba(255, 255, 255, 0.9);
-      background: rgba(255, 255, 255, 0.08);
-      transform: translateY(-2px);
+      border-color: rgba(255, 255, 255, 0.4);
+      color: #fff;
+      background: rgba(255, 255, 255, 0.1);
+      transform: translateY(-4px);
+      box-shadow: 0 8px 25px rgba(255, 255, 255, 0.1);
+    }
+    
+    svg {
+       transition: transform 0.3s ease;
+    }
+    
+    &:hover svg {
+       transform: translateY(2px);
     }
   }
 `;
