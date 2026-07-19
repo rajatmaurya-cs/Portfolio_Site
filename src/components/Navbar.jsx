@@ -9,6 +9,7 @@ import {
 } from "react-icons/ai";
 
 import { CgFileDocument } from "react-icons/cg";
+import { MdWork } from "react-icons/md";
 
 function NavBar() {
   const [expand, updateExpanded] = useState(false);
@@ -85,6 +86,11 @@ function NavBar() {
           <li className="md:ml-5 w-full md:w-auto">
             <Link href="/about" onClick={() => updateExpanded(false)} className={navLinkClass}>
               <AiOutlineUser className="mb-[2px] inline-block" /> About
+            </Link>
+          </li>
+          <li className="md:ml-5 w-full md:w-auto">
+            <Link href="/experience" onClick={() => updateExpanded(false)} className={navLinkClass}>
+              <MdWork className="mb-[2px] inline-block" /> Experience
             </Link>
           </li>
           <li className="md:ml-5 w-full md:w-auto">
