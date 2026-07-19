@@ -5,10 +5,10 @@ import {
   AiOutlineHome,
   AiOutlineFundProjectionScreen,
   AiOutlineUser,
-  AiOutlineBriefcase,
 } from "react-icons/ai";
 
 import { CgFileDocument } from "react-icons/cg";
+import { FiBriefcase } from "react-icons/fi";
 
 function NavBar() {
   const [expand, updateExpanded] = useState(false);
@@ -89,7 +89,7 @@ function NavBar() {
           </li>
           <li className="md:ml-5 w-full md:w-auto">
             <Link href="/experience" onClick={() => updateExpanded(false)} className={navLinkClass}>
-              <AiOutlineBriefcase className="mb-[2px] inline-block" /> Experience
+              <FiBriefcase className="mb-[2px] inline-block" /> Experience
             </Link>
           </li>
           <li className="md:ml-5 w-full md:w-auto">
