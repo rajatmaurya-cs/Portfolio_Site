@@ -2,11 +2,15 @@
 import React, { useState, useEffect, useCallback } from "react";
 
 const strings = [
-  "Full Stack MERN Developer",
-  "Building Production-Grade Web Apps with AI Integration",
-  "Creator of Postify — AI-Powered Blogging Platform",
+  "Software Engineer | Backend & Distributed Systems",
+  "Building Scalable Backend Infrastructure",
+  "Creator of Veyra - Home For Modern Creator",
+  "Express.js • PostgreSQL • Redis • Kafka",
+  "Next.js • React.js • React Query",
+  "Docker • AWS • GitHub Actions • CI/CD",
+  "REST APIs • Testing • Performance • Reliability",
   "Strong in DSA and Problem Solving",
-  "Exploring Scalable Systems and AI",
+
 ];
 
 function Type() {

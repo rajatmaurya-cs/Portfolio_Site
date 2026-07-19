@@ -3,7 +3,7 @@ import Particle from "../Particle";
 
 import Techstack from "./Techstack";
 import Aboutcard from "./AboutCard";
-import VisionGoggles from "./VisionGoggles";
+import laptopImg from "../../Assets/about.png";
 import Toolstack from "./Toolstack";
 
 function About() {
@@ -19,8 +19,8 @@ function About() {
               </h1>
               <Aboutcard />
             </div>
-            <div className="pb-[50px] pt-0 md:col-span-5 flex items-center justify-center">
-              <VisionGoggles />
+            <div className="pb-[50px] pt-0 md:col-span-5">
+              <img src={laptopImg.src || laptopImg} alt="about" className="h-auto w-full" />
             </div>
           </div>
 
