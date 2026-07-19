@@ -2,14 +2,13 @@ import React, { useEffect, useState } from "react";
 import Link from "next/link";
 
 import {
-  
   AiOutlineHome,
   AiOutlineFundProjectionScreen,
   AiOutlineUser,
+  AiOutlineBriefcase,
 } from "react-icons/ai";
 
 import { CgFileDocument } from "react-icons/cg";
-import { MdWork } from "react-icons/md";
 
 function NavBar() {
   const [expand, updateExpanded] = useState(false);
@@ -90,7 +89,7 @@ function NavBar() {
           </li>
           <li className="md:ml-5 w-full md:w-auto">
             <Link href="/experience" onClick={() => updateExpanded(false)} className={navLinkClass}>
-              <MdWork className="mb-[2px] inline-block" /> Experience
+              <AiOutlineBriefcase className="mb-[2px] inline-block" /> Experience
             </Link>
           </li>
           <li className="md:ml-5 w-full md:w-auto">
