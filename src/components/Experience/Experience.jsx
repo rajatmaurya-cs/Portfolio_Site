@@ -593,26 +593,37 @@ const StyledExperience = styled.div`
   }
 
   .meta-item {
-    display: flex;
+    display: inline-flex;
     align-items: center;
-    gap: 6px;
-    font-size: 0.9em;
+    gap: 8px;
+    font-size: 0.85em;
     font-weight: 500;
     color: rgba(255, 255, 255, 0.85);
+    padding: 6px 14px;
+    background: rgba(20, 10, 40, 0.8);
+    border: 1px solid rgba(199, 112, 240, 0.2);
+    border-radius: 20px;
+    backdrop-filter: blur(8px);
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+
+    &:hover {
+      background: rgba(199, 112, 240, 0.12);
+      border-color: rgba(199, 112, 240, 0.4);
+      box-shadow: 0 6px 15px rgba(199, 112, 240, 0.15);
+      transform: translateY(-2px);
+    }
 
     svg {
       font-size: 1.2em;
+      color: #c770f0;
+      transition: all 0.3s ease;
     }
-  }
-
-  .meta-item.calendar svg {
-    color: #ff9800;
-    filter: drop-shadow(0 0 5px rgba(255, 152, 0, 0.4));
-  }
-
-  .meta-item.location svg {
-    color: #4caf50;
-    filter: drop-shadow(0 0 5px rgba(76, 175, 80, 0.4));
+    
+    &:hover svg {
+      filter: drop-shadow(0 0 8px rgba(199, 112, 240, 0.6));
+      transform: scale(1.1);
+    }
   }
 
   /* ── Divider ── */
