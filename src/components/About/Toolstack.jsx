@@ -2,11 +2,7 @@ import React from "react";
 import {
   SiGit,
   SiGithub,
-  SiIntellijidea,
   SiPostman,
-  SiVercel,
-  SiApple,
-  SiGooglechrome,
   SiDocker,
   SiGithubactions,
 } from "react-icons/si";
@@ -16,21 +12,17 @@ import { FaAws } from "react-icons/fa";
 const tools = [
   { icon: <SiGit />,             color: "#f05032", name: "Git",          desc: "Version control system." },
   { icon: <SiGithub />,          color: "#ffffff", name: "GitHub",       desc: "Remote repository hosting." },
-  { icon: <SiApple />,           color: "#a2aaad", name: "macOS",        desc: "Primary OS environment." },
-  { icon: <SiGooglechrome />,    color: "#4285F4", name: "Chrome",       desc: "Browser & DevTools." },
   { icon: <VscVscode />,          color: "#007ACC", name: "VS Code",      desc: "Primary code editor." },
-  { icon: <SiIntellijidea />,    color: "#fe315d", name: "IntelliJ",     desc: "Java / JVM IDE." },
   { icon: <SiPostman />,         color: "#FF6C37", name: "Postman",      desc: "API testing tool." },
-  { icon: <SiVercel />,          color: "#ffffff", name: "Vercel",       desc: "Deployment platform." },
   { icon: <SiDocker />,          color: "#2496ed", name: "Docker",       desc: "Platform for containerizing applications." },
   { icon: <FaAws />,             color: "#ff9900", name: "AWS",          desc: "Amazon Web Services cloud platform." },
   { icon: <SiGithubactions />,   color: "#2088ff", name: "GitHub CI",    desc: "CI/CD automation workflows." },
 ];
 
 function Toolstack() {
-  const size = 400;
+  const size = 440;
   const center = size / 2;
-  const radius = 160;
+  const radius = 180;
 
   return (
     <section className="flex items-center justify-center overflow-visible pb-10 pt-5">
