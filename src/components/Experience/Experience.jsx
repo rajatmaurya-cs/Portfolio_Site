@@ -96,12 +96,12 @@ function Experience() {
   return (
     <div className="relative pb-[30px] pt-[60px] md:pt-[100px] text-white min-h-screen">
       <Particle />
-      <div className="mx-auto max-w-6xl px-4">
+      <div className="mx-auto max-w-6xl px-4 relative">
+        <div className="absolute top-[0px] md:top-[30px] right-[5%] md:right-[15%] opacity-90 scale-[1.2] md:scale-[1.6] z-10 hover:scale-[1.8] transition-transform duration-500 hidden md:block">
+          <Butterfly />
+        </div>
         {/* ── Section Header ── */}
         <div className="mb-12 text-center relative">
-          <div className="absolute -top-[10px] left-[5%] md:left-[25%] opacity-90 scale-[0.7]">
-            <Butterfly />
-          </div>
           <h1 className="pb-[10px] pt-[10px] text-[2.3em] font-medium text-white">
             Work{" "}
             <strong className="text-[#c770f0]">Experience</strong>
