@@ -13,9 +13,12 @@ import {
   SiRedis,
   SiC,
   SiCplusplus,
-    SiNextdotjs,
+  SiNextdotjs,
   SiTypescript,
+  SiApachekafka,
+  SiJest,
 } from "react-icons/si";
+import { GiBull } from "react-icons/gi";
 
 const skills = [
   { icon: <SiC />,          color: "#004f9e", name: "C",          desc: "Procedural programming language." },
@@ -31,12 +34,15 @@ const skills = [
   { icon: <FaNodeJs />,     color: "#3c873a", name: "Node.js",    desc: "Backend runtime." },
   { icon: <SiMongodb />,    color: "#47a248", name: "MongoDB",    desc: "NoSQL database." },
   { icon: <SiRedis />,      color: "#d82c20", name: "Redis",      desc: "In-memory database & caching." },
+  { icon: <GiBull />,       color: "#ff3333", name: "BullMQ",     desc: "Redis-based background job queue." },
+  { icon: <SiApachekafka />,color: "#ffffff", name: "Kafka",      desc: "Distributed event streaming platform." },
+  { icon: <SiJest />,       color: "#c21325", name: "Testing",    desc: "Unit and integration testing (Jest, RTL)." },
 ];
 
 function Techstack() {
-  const size = 400;
+  const size = 440;
   const center = size / 2;
-  const radius = 160;
+  const radius = 180;
 
   return (
     <section className="flex items-center justify-center overflow-visible pb-10 pt-5">
