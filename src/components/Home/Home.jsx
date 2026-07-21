@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import homeLogo from "../../Assets/home-main.svg";
 import Particle from "../Particle";
 import Home2 from "./Home2";
@@ -16,6 +16,7 @@ import { MdEmail } from "react-icons/md";
 
 
 function Home() {
+  const typewriterRef = useRef(null);
   return (
     <section>
       {/* HERO SECTION */}
@@ -38,9 +39,11 @@ function Home() {
               </h1>
 
               <div className="p-4 text-left sm:p-[50px]">
-                <Type />
+                <Type typewriterRef={typewriterRef} />
                 <div className="mt-8 flex justify-start">
-                  <PrinterAnimation />
+                  <div ref={typewriterRef}>
+                    <PrinterAnimation />
+                  </div>
                 </div>
               </div>
             </div>
