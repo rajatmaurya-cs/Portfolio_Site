@@ -11,7 +11,9 @@ import { CgFileDocument } from "react-icons/cg";
 import { FiBriefcase } from "react-icons/fi";
 
 function NavBar() {
+
   const [expand, updateExpanded] = useState(false);
+  
   const [navColour, updateNavbar] = useState(false);
 
   function scrollHandler() {

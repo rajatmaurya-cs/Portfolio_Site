@@ -47,7 +47,20 @@ const experiences = [
       { icon: <SiTypescript />, name: "TypeScript", color: "#3178c6" },
       { icon: <FaGitAlt />, name: "Git", color: "#f05032" },
     ],
-    certificatePdf: "/SmallFareCertificate.pdf",
+    documents: [
+      {
+        id: "ics",
+        title: "Internship Completion Certificate (ICs)",
+        buttonLabel: "Completion Certificate",
+        pdf: "/SmallFare-ICs.pdf",
+      },
+      {
+        id: "lor",
+        title: "Letter of Recommendation (LOR)",
+        buttonLabel: "Letter of Recommendation",
+        pdf: "/SmallFare-LOR.pdf",
+      },
+    ],
   },
 ];
 
@@ -55,7 +68,7 @@ const experiences = [
 function Experience() {
   const [activeExp, setActiveExp] = useState(0);
   const [visibleHighlights, setVisibleHighlights] = useState([]);
-  const [showCertificate, setShowCertificate] = useState(false);
+  const [activeDoc, setActiveDoc] = useState(null);
   const [mounted, setMounted] = useState(false);
   const cardRef = useRef(null);
 
@@ -199,61 +212,66 @@ function Experience() {
                 </div>
               </div>
 
-              {/* Certificate Button */}
+              {/* Documents Section */}
               <div className="certificate-section">
-                <button
-                  className="cert-btn"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    setShowCertificate(true);
-                  }}
-                >
-                  <AiOutlineSafetyCertificate className="cert-icon" />
-                  <span>View Letter of Appreciation</span>
-                  <MdOutlineOpenInNew className="open-icon" />
-                </button>
+                {item.documents &&
+                  item.documents.map((doc) => (
+                    <div key={doc.id} className="doc-group">
+                      <button
+                        className="cert-btn"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setActiveDoc(doc);
+                        }}
+                      >
+                        <AiOutlineSafetyCertificate className="cert-icon" />
+                        <span>View {doc.buttonLabel}</span>
+                        <MdOutlineOpenInNew className="open-icon" />
+                      </button>
 
-                <a
-                  href={item.certificatePdf}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="download-btn"
-                  onClick={(e) => e.stopPropagation()}
-                >
-                  <AiOutlineDownload />
-                  <span>Download Certificate</span>
-                </a>
+                      <a
+                        href={doc.pdf}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="download-btn"
+                        onClick={(e) => e.stopPropagation()}
+                      >
+                        <AiOutlineDownload />
+                        <span>Download</span>
+                      </a>
+                    </div>
+                  ))}
               </div>
             </div>
           ))}
         </StyledExperience>
 
-        {/* ── Certificate Modal ── */}
-        {showCertificate && (
+        {/* ── Document Modal ── */}
+        {activeDoc && (
           <CertificateModal>
             <div
               className="modal-backdrop"
-              onClick={() => setShowCertificate(false)}
+              onClick={() => setActiveDoc(null)}
             />
             <div className="modal-content">
               <button
                 className="modal-close"
-                onClick={() => setShowCertificate(false)}
+                onClick={() => setActiveDoc(null)}
               >
                 ✕
               </button>
               <h3 className="modal-title">
-                <AiOutlineSafetyCertificate /> Letter of Appreciation
+                <AiOutlineSafetyCertificate /> {activeDoc.title}
               </h3>
               <div className="pdf-frame-wrapper">
                 <iframe
-                  src={`${exp.certificatePdf}#toolbar=0`}
-                  title="Letter of Appreciation"
+                  src={`${activeDoc.pdf}#toolbar=0`}
+                  title={activeDoc.title}
                   className="pdf-frame"
                 />
               </div>
               <a
-                href={exp.certificatePdf}
+                href={activeDoc.pdf}
                 target="_blank"
                 rel="noreferrer"
                 className="modal-download"
@@ -692,11 +710,19 @@ const StyledExperience = styled.div`
   /* ── Certificate ── */
   .certificate-section {
     display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .doc-group {
+    display: flex;
+    align-items: center;
     gap: 16px;
     flex-wrap: wrap;
 
     @media (max-width: 480px) {
       flex-direction: column;
+      align-items: stretch;
     }
   }
 
