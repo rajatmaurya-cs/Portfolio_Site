@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import styled from 'styled-components';
 
 const Card = () => {
@@ -72,6 +72,7 @@ const StyledWrapper = styled.div`
     position: relative;
     height: 300px;
     width: 230px;
+    contain: layout paint;
   }
 
   .card .boxshadow {
@@ -79,8 +80,8 @@ const StyledWrapper = styled.div`
     height: 100%;
     width: 100%;
     border: 1px solid #cd5ff8;
-    transform: scale(0.8);
-    box-shadow: rgba(205, 95, 248, 0.9) 0px 30px 70px 0px;
+    transform: scale(0.8) translateZ(0);
+    box-shadow: rgba(205, 95, 248, 0.6) 0px 15px 40px 0px;
     transition: all 0.5s cubic-bezier(0.785, 0.135, 0.15, 0.86);
   }
 
@@ -104,7 +105,8 @@ const StyledWrapper = styled.div`
       40px 100%,
       0 calc(100% - 40px)
     );
-    box-shadow: rgba(205, 95, 248, 0.8) 0px 7px 29px 0px;
+    box-shadow: rgba(205, 95, 248, 0.6) 0px 7px 20px 0px;
+    transform: translateZ(0);
     transition: all 0.3s cubic-bezier(0.785, 0.135, 0.15, 0.86);
   }
 
@@ -262,4 +264,4 @@ const StyledWrapper = styled.div`
   }
 `;
 
-export default Card;
+export default memo(Card);

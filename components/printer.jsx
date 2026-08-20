@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import styled from 'styled-components';
 
 const Loader = () => {
@@ -16,11 +16,13 @@ const Loader = () => {
 }
 
 const StyledWrapper = styled.div`
+  contain: layout paint;
   .printer-scale-wrapper {
-    transform: scale(1.6);
+    transform: scale(1.6) translateZ(0);
     transform-origin: left top;
     display: inline-block;
     margin-bottom: 35px; /* offset the scaled-up height */
+    will-change: transform;
   }
 
   .typewriter {
@@ -256,4 +258,4 @@ const StyledWrapper = styled.div`
     }
   }`;
 
-export default Loader;
+export default memo(Loader);

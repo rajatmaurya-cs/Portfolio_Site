@@ -544,14 +544,13 @@ const StyledWrapper = styled.div`
     height: 7.5em;
     border-radius: 50%;
     background: #f9f9fb;
-    box-shadow: 0px 0px 100px rgba(193, 119, 241, 0.8),
-      0px 0px 100px rgba(135, 42, 211, 0.8), inset #9b40fc 0px 0px 40px -12px;
-    transition: 0.4s ease-in-out;
+    box-shadow: 0px 0px 40px rgba(193, 119, 241, 0.6), inset #9b40fc 0px 0px 20px -6px;
+    transition: box-shadow 0.3s ease-in-out;
+    transform: translateZ(0);
     z-index: 0;
   }
   .receipt:hover .bg-moon {
-    box-shadow: 0px 0px 200px rgba(193, 119, 241, 1),
-      0px 0px 200px rgba(135, 42, 211, 1), inset #9b40fc 0px 0px 40px -12px;
+    box-shadow: 0px 0px 60px rgba(193, 119, 241, 0.8), inset #9b40fc 0px 0px 25px -6px;
   }
 
   .bg-stars-1 {
@@ -561,14 +560,11 @@ const StyledWrapper = styled.div`
     width: 2px;
     height: 2px;
     border-radius: 50%;
-    opacity: 1;
+    opacity: 0.8;
     box-shadow: 220px 118px #fff, 280px 176px #fff, 40px 50px #fff,
-      60px 180px #fff, 120px 130px #fff, 180px 176px #fff, 220px 290px #fff,
-      520px 250px #fff, 400px 220px #fff, 50px 350px #fff, 10px 230px #fff;
+      60px 180px #fff, 120px 130px #fff, 180px 176px #fff, 220px 290px #fff;
     z-index: 0;
-    transition: 1s ease;
-    animation: 1s glowing-stars linear alternate infinite;
-    animation-delay: 0s;
+    transform: translateZ(0);
   }
   .bg-stars-2 {
     position: absolute;
@@ -577,14 +573,12 @@ const StyledWrapper = styled.div`
     width: 2px;
     height: 2px;
     border-radius: 50%;
-    opacity: 1;
-    box-shadow: 140px 20px #fff, 425px 20px #fff, 70px 120px #fff, 20px 130px #fff,
-      110px 80px #fff, 280px 80px #fff, 250px 350px #fff, 280px 230px #fff,
-      220px 190px #fff, 450px 100px #fff, 380px 80px #fff, 520px 50px #fff;
+    opacity: 0.8;
+    box-shadow: 140px 20px #fff, 70px 120px #fff, 20px 130px #fff,
+      110px 80px #fff, 280px 80px #fff, 250px 350px #fff,
+      220px 190px #fff, 380px 80px #fff;
     z-index: 0;
-    transition: 1.5s ease;
-    animation: 1s glowing-stars linear alternate infinite;
-    animation-delay: 0.4s;
+    transform: translateZ(0);
   }
   .bg-stars-3 {
     position: absolute;
@@ -593,20 +587,11 @@ const StyledWrapper = styled.div`
     width: 2px;
     height: 2px;
     border-radius: 50%;
-    opacity: 1;
-    box-shadow: 490px 330px #fff, 420px 300px #fff, 320px 280px #fff,
-      380px 350px #fff, 546px 170px #fff, 420px 180px #fff, 370px 150px #fff,
-      200px 250px #fff, 80px 20px #fff, 190px 50px #fff, 270px 20px #fff,
-      120px 230px #fff, 350px -1px #fff, 150px 369px #fff;
+    opacity: 0.8;
+    box-shadow: 320px 280px #fff, 380px 350px #fff, 370px 150px #fff,
+      200px 250px #fff, 80px 20px #fff, 190px 50px #fff, 270px 20px #fff;
     z-index: 0;
-    transition: 2s ease;
-    animation: 1s glowing-stars linear alternate infinite;
-    animation-delay: 0.8s;
-  }
-  .receipt:hover .bg-stars-1,
-  .receipt:hover .bg-stars-2,
-  .receipt:hover .bg-stars-3 {
-    filter: blur(3px);
+    transform: translateZ(0);
   }
 
   /* ── Astronaut ── */

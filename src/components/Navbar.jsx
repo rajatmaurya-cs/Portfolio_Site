@@ -11,28 +11,29 @@ import { CgFileDocument } from "react-icons/cg";
 import { FiBriefcase } from "react-icons/fi";
 
 function NavBar() {
-
   const [expand, updateExpanded] = useState(false);
-  
   const [navColour, updateNavbar] = useState(false);
 
-  function scrollHandler() {
-    if (window.scrollY >= 20) {
-      updateNavbar(true);
-    } else {
-      updateNavbar(false);
-    }
-  }
-
   useEffect(() => {
-    window.addEventListener("scroll", scrollHandler);
+    let ticking = false;
+    const scrollHandler = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          updateNavbar(window.scrollY >= 20);
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+
+    window.addEventListener("scroll", scrollHandler, { passive: true });
     
     const handleResize = () => {
       if (window.innerWidth >= 768) {
         updateExpanded(false);
       }
     };
-    window.addEventListener("resize", handleResize);
+    window.addEventListener("resize", handleResize, { passive: true });
 
     return () => {
       window.removeEventListener("scroll", scrollHandler);

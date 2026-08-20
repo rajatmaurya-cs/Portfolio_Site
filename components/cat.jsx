@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import styled from 'styled-components';
 
 const Loader = () => {
@@ -21,6 +21,7 @@ const StyledWrapper = styled.div`
     align-items: center;
     gap: 15px;
     margin-left: 10px;
+    contain: layout paint;
   }
 
   .dot-two {
@@ -40,6 +41,7 @@ const StyledWrapper = styled.div`
     width: 20px;
     border-radius: 50%;
     text-align: center;
+    will-change: transform;
     animation: flap-wings 1s infinite ease-in-out;
   }
 
@@ -49,6 +51,7 @@ const StyledWrapper = styled.div`
     width: 30px;
     border-radius: 50%;
     background-color: #cd5ff8;
+    will-change: transform;
     animation: flap-wings 1s infinite ease-in-out;
     animation-delay: 0.1s;
   }
@@ -81,12 +84,13 @@ const StyledWrapper = styled.div`
   @keyframes flap-wings {
     0%,
     100% {
-      transform: translateY(0);
+      transform: translate3d(0, 0, 0);
     }
 
     50% {
-      transform: translateY(-20px);
+      transform: translate3d(0, -20px, 0);
     }
   }`;
 
-export default Loader;
+export default memo(Loader);
+

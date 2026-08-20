@@ -1,26 +1,36 @@
-import React from "react";
-
+"use client";
+import React, { useState, useEffect } from "react";
 import Lottie from "lottie-react";
+import Rocket from "../../components/Rocket.json";
 
+function Pre({ load }) {
+  const [shouldRender, setShouldRender] = useState(load);
 
-import Rocket from '../../components/Rocket.json'
+  useEffect(() => {
+    if (!load) {
+      const timeout = setTimeout(() => {
+        setShouldRender(false);
+      }, 400);
+      return () => clearTimeout(timeout);
+    } else {
+      setShouldRender(true);
+    }
+  }, [load]);
 
-function Pre(props) {
+  if (!shouldRender) return null;
+
   return (
     <div
-      className={
-        props.load
-          ? "fixed inset-0 z-[999999] flex flex-col items-center justify-center transition-opacity duration-300"
-          : "fixed inset-0 z-[999999] pointer-events-none opacity-0 flex flex-col items-center justify-center transition-opacity duration-300"
-      }
+      className={`fixed inset-0 z-[999999] flex flex-col items-center justify-center transition-opacity duration-300 ${
+        load ? "opacity-100" : "opacity-0 pointer-events-none"
+      }`}
     >
-    
       <div className="w-[900px] sm:w-[950px] translate-y-10 sm:translate-y-12 mt-20">
-        {/* <Pan /> */}
         <Lottie animationData={Rocket} loop={true} />
       </div>
     </div>
   );
 }
 
-export default Pre;
+export default React.memo(Pre);
+

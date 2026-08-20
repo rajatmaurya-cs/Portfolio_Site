@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import Particles from "react-tsparticles";
 
@@ -5,52 +6,53 @@ function Particle() {
   return (
     <Particles
       id="tsparticles"
-      className="fixed inset-0 -z-10 h-full w-full bg-cover bg-no-repeat"
+      className="fixed inset-0 -z-10 h-full w-full pointer-events-none"
       params={{
         particles: {
           number: {
-            value: 160,
+            value: 35,
             density: {
               enable: true,
-              value_area: 1500,
+              value_area: 1200,
             },
           },
           line_linked: {
             enable: false,
-            opacity: 0.03,
           },
           move: {
             direction: "right",
-            speed: 0.05,
+            speed: 0.08,
+            out_mode: "out",
           },
           size: {
-            value: 1,
+            value: 1.2,
           },
           opacity: {
+            value: 0.6,
             anim: {
               enable: true,
-              speed: 1,
-              opacity_min: 0.05,
+              speed: 0.6,
+              opacity_min: 0.1,
             },
           },
         },
         interactivity: {
+          detect_on: "canvas",
           events: {
+            onhover: {
+              enable: false,
+            },
             onclick: {
-              enable: true,
-              mode: "push",
+              enable: false,
             },
-          },
-          modes: {
-            push: {
-              particles_nb: 1,
-            },
+            resize: true,
           },
         },
-        retina_detect: true,
+        retina_detect: false,
       }}
     />
   );
 }
 
-export default Particle;
+export default React.memo(Particle);
+

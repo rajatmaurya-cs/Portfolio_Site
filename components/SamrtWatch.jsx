@@ -1,54 +1,106 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, memo, useCallback } from 'react';
 import styled from 'styled-components';
 import myImg from '../src/Assets/myImg.jpg';
 
-const SmartWatch = () => {
-  const [time, setTime] = useState(new Date());
-  const watchRef = useRef(null);
-
-  const [mounted, setMounted] = useState(false);
+// Isolated Clock component to prevent re-rendering the whole watch assembly every second
+const SystemTimeDisplay = memo(() => {
+  const [timeStr, setTimeStr] = useState('--:--');
 
   useEffect(() => {
-    setMounted(true);
-    const timer = setInterval(() => setTime(new Date()), 1000);
+    const update = () => {
+      const now = new Date();
+      const h24 = now.getHours();
+      const h12 = h24 % 12 || 12;
+      const hours = h12.toString().padStart(2, '0');
+      const minutes = now.getMinutes().toString().padStart(2, '0');
+      setTimeStr(`${hours}:${minutes}`);
+    };
+    update();
+    const timer = setInterval(update, 1000);
     return () => clearInterval(timer);
   }, []);
 
-  const h24 = mounted ? time.getHours() : 0;
-  const h12 = h24 % 12 || 12; // Convert 0 to 12 for midnight
-  const hours = mounted ? h12.toString().padStart(2, '0') : '--';
-  const minutes = mounted ? time.getMinutes().toString().padStart(2, '0') : '--';
-  const seconds = mounted ? time.getSeconds().toString().padStart(2, '0') : '--';
-  const sysTime = mounted ? `${hours}:${minutes}` : '--:--';
+  return <div className="system-time" suppressHydrationWarning>{timeStr}</div>;
+});
 
-  const handleMouseMove = (e) => {
-    if (!watchRef.current) return;
-    const { left, top, width, height } = watchRef.current.getBoundingClientRect();
-    const x = (e.clientX - left) / width - 0.5;
-    const y = (e.clientY - top) / height - 0.5;
-    watchRef.current.style.transform = `perspective(1000px) rotateY(${x * 15}deg) rotateX(${-y * 15}deg) scale3d(1.02, 1.02, 1.02)`;
-  };
+const HeroTimeDisplay = memo(() => {
+  const [digits, setDigits] = useState({ hours: '--', minutes: '--', seconds: '--' });
 
-  const handleMouseLeave = () => {
+  useEffect(() => {
+    const update = () => {
+      const now = new Date();
+      const h24 = now.getHours();
+      const h12 = h24 % 12 || 12;
+      setDigits({
+        hours: h12.toString().padStart(2, '0'),
+        minutes: now.getMinutes().toString().padStart(2, '0'),
+        seconds: now.getSeconds().toString().padStart(2, '0'),
+      });
+    };
+    update();
+    const timer = setInterval(update, 1000);
+    return () => clearInterval(timer);
+  }, []);
+
+  return (
+    <div className="as-hero-time" suppressHydrationWarning>
+      <div className="as-h-digits" suppressHydrationWarning>{digits.hours}:{digits.minutes}</div>
+      <div className="as-h-seconds" suppressHydrationWarning>{digits.seconds}</div>
+    </div>
+  );
+});
+
+const SmartWatch = () => {
+  const watchRef = useRef(null);
+  const boundsRef = useRef(null);
+  const rafRef = useRef(null);
+
+  const handleMouseEnter = useCallback(() => {
+    if (watchRef.current) {
+      boundsRef.current = watchRef.current.getBoundingClientRect();
+    }
+  }, []);
+
+  const handleMouseMove = useCallback((e) => {
     if (!watchRef.current) return;
-    watchRef.current.style.transform = 'perspective(1000px) rotateY(0) rotateX(0) scale3d(1, 1, 1)';
-  };
+    if (!boundsRef.current) {
+      boundsRef.current = watchRef.current.getBoundingClientRect();
+    }
+
+    if (rafRef.current) return;
+
+    rafRef.current = requestAnimationFrame(() => {
+      rafRef.current = null;
+      if (!watchRef.current || !boundsRef.current) return;
+      const { left, top, width, height } = boundsRef.current;
+      const x = (e.clientX - left) / width - 0.5;
+      const y = (e.clientY - top) / height - 0.5;
+      watchRef.current.style.transform = `perspective(1000px) rotateY(${x * 15}deg) rotateX(${-y * 15}deg) scale3d(1.02, 1.02, 1.02)`;
+    });
+  }, []);
+
+  const handleMouseLeave = useCallback(() => {
+    if (rafRef.current) {
+      cancelAnimationFrame(rafRef.current);
+      rafRef.current = null;
+    }
+    boundsRef.current = null;
+    if (watchRef.current) {
+      watchRef.current.style.transform = 'perspective(1000px) rotateY(0) rotateX(0) scale3d(1, 1, 1)';
+    }
+  }, []);
 
   return (
     <StyledWrapper>
       <div 
         className="pro-watch-experience"
         ref={watchRef}
+        onMouseEnter={handleMouseEnter}
         onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeave}
-        style={{ transition: 'transform 0.1s ease-out' }}
+        style={{ transition: 'transform 0.15s ease-out', willChange: 'transform' }}
       >
         <div className="main-wrapper">
-          <input type="radio" name="face-toggle" id="face1" defaultChecked />
-          <input type="radio" name="face-toggle" id="face2" />
-          <input type="radio" name="face-toggle" id="face3" />
-          <input type="radio" name="face-toggle" id="face4" />
-          <input type="radio" name="face-toggle" id="face5" />
           <div className="watch-assembly">
             <div className="strap-piece strap-top" />
             <div className="strap-piece strap-bottom" />
@@ -58,7 +110,7 @@ const SmartWatch = () => {
               <div className="action-trigger" />
               <div className="sapphire-glass">
                 <div className="os-overlay">
-                  <div className="system-time" suppressHydrationWarning>{sysTime}</div>
+                  <SystemTimeDisplay />
                   <div className="battery-status">
                     <div className="bat-percent">63%</div>
                     <div className="bat-icon" />
@@ -87,73 +139,10 @@ const SmartWatch = () => {
 
                     <div className="as-info">
                       <div className="as-name">Rajat Maurya</div>
-                      
                     </div>
 
-                    <div className="as-hero-time" suppressHydrationWarning>
-                      <div className="as-h-digits" suppressHydrationWarning>{hours}:{minutes}</div>
-                      <div className="as-h-seconds" suppressHydrationWarning>{seconds}</div>
-                    </div>
+                    <HeroTimeDisplay />
                   </div>
-                  <div className="ui-view face-activity-pro">
-                    <div className="ring-stack">
-                      <div className="ring-item" style={{ '--c': '#ff3b30', '--p': '90%' }}>
-                        <div className="ring-label">FRONTEND</div>
-                        <div className="ring-stats">90% <small>PRO</small></div>
-                      </div>
-                      <div className="ring-item" style={{ '--c': '#4cd964', '--p': '85%' }}>
-                        <div className="ring-label">BACKEND</div>
-                        <div className="ring-stats">85% <small>EXP</small></div>
-                      </div>
-                      <div className="ring-item" style={{ '--c': '#007aff', '--p': '75%' }}>
-                        <div className="ring-label">UI/UX</div>
-                        <div className="ring-stats">75% <small>INT</small></div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="ui-view face-vitals-pro">
-                    <div className="vital-header">CODER PULSE</div>
-                    <div className="pulse-container">
-                      <div className="pulse-wave" />
-                      <div className="heart-icon">⚡</div>
-                    </div>
-                    <div className="vital-value">120</div>
-                    <div className="vital-unit">COMMITS/WK</div>
-                  </div>
-                  <div className="ui-view face-media-pro">
-                    <div className="media-card">
-                      <div className="media-art">🎧</div>
-                      <div className="media-meta">
-                        <div className="m-title">Lofi Hip Hop</div>
-                        <div className="m-artist">Beats to code to</div>
-                      </div>
-                      <div className="media-controls">
-                        <div className="ctrl">⏮</div>
-                        <div className="ctrl-play" />
-                        <div className="ctrl">⏭</div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="ui-view face-apps-pro">
-                    <div className="app-honeycomb">
-                      <div className="app-node">📞</div>
-                      <div className="app-node" style={{background: '#4cd964'}}>✉️</div>
-                      <div className="app-node" style={{background: '#007aff'}}>🎵</div>
-                      <div className="app-node" style={{background: '#ff9500'}}>🧭</div>
-                      <div className="app-node" style={{background: '#5856d6'}}>⚙️</div>
-                      <div className="app-node" style={{background: '#ff3b30'}}>❤️</div>
-                      <div className="app-node" style={{background: '#ff9500'}}>🏃</div>
-                      <div className="app-node" style={{background: '#4cd964'}}>📱</div>
-                      <div className="app-node" style={{background: '#ffcc00'}}>📸</div>
-                    </div>
-                  </div>
-                </div>
-                <div className="page-indicator">
-                  <label htmlFor="face1" className="dot-btn b1" />
-                  <label htmlFor="face2" className="dot-btn b2" />
-                  <label htmlFor="face3" className="dot-btn b3" />
-                  <label htmlFor="face4" className="dot-btn b4" />
-                  <label htmlFor="face5" className="dot-btn b5" />
                 </div>
               </div>
             </div>
@@ -162,7 +151,7 @@ const SmartWatch = () => {
       </div>
     </StyledWrapper>
   );
-}
+};
 
 const StyledWrapper = styled.div`
   .pro-watch-experience .main-wrapper {
@@ -185,10 +174,6 @@ const StyledWrapper = styled.div`
     font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display",
       "Helvetica Neue", sans-serif;
     user-select: none;
-  }
-
-  .pro-watch-experience input {
-    display: none;
   }
 
   .pro-watch-experience .watch-assembly {
@@ -378,23 +363,21 @@ const StyledWrapper = styled.div`
   .pro-watch-experience .bat-icon::before {
     content: '';
     display: block;
-    width: 63%; /* Match the 63% text */
+    width: 63%;
     height: 100%;
     background: #4cd964;
     border-radius: 1px;
   }
 
   .pro-watch-experience .viewport-canvas {
-    width: 500%;
+    width: 100%;
     height: 100%;
     display: flex;
-    transition: transform 0.7s var(--ease-out);
   }
 
   .pro-watch-experience .ui-view {
-    width: 20%;
+    width: 100%;
     height: 100%;
-    padding: 55px 30px 40px;
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
@@ -471,7 +454,7 @@ const StyledWrapper = styled.div`
     height: 100%;
     object-fit: cover;
     object-position: center top;
-    transform: scale(1.2); /* Zoom in to crop out the white border in the source image */
+    transform: scale(1.2);
   }
 
   .pro-watch-experience .as-info {
@@ -484,13 +467,6 @@ const StyledWrapper = styled.div`
     font-weight: 800;
     color: #fff;
     margin-bottom: 2px;
-  }
-
-  .pro-watch-experience .as-role {
-    font-size: 9px;
-    font-weight: 700;
-    color: #c084fc;
-    letter-spacing: 1px;
   }
 
   .pro-watch-experience .as-hero-time {
@@ -519,219 +495,7 @@ const StyledWrapper = styled.div`
     font-size: 14px;
     letter-spacing: 1px;
   }
-
-  .pro-watch-experience .ring-stack {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    margin-top: 15px;
-  }
-
-  .pro-watch-experience .ring-item {
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 12px;
-    padding: 12px;
-    border-left: 4px solid var(--c);
-  }
-
-  .pro-watch-experience .ring-label {
-    font-size: 9px;
-    font-weight: 800;
-    color: var(--c);
-    margin-bottom: 2px;
-  }
-  .pro-watch-experience .ring-stats {
-    font-size: 14px;
-    font-weight: 800;
-    color: #fff;
-  }
-  .pro-watch-experience .ring-stats small {
-    font-size: 9px;
-    opacity: 0.5;
-  }
-
-  .pro-watch-experience .face-vitals-pro {
-    justify-content: center;
-  }
-
-  .pro-watch-experience .vital-header {
-    font-size: 10px;
-    font-weight: 800;
-    letter-spacing: 1px;
-    color: #ff3b30;
-    margin-bottom: 10px;
-  }
-
-  .pro-watch-experience .pulse-container {
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 80px;
-    height: 80px;
-  }
-
-  .pro-watch-experience .heart-icon {
-    font-size: 40px;
-    z-index: 2;
-    animation: beat 0.8s infinite;
-  }
-
-  @keyframes beat {
-    0% {
-      transform: scale(1);
-    }
-    15% {
-      transform: scale(1.2);
-    }
-    30% {
-      transform: scale(1);
-    }
-    45% {
-      transform: scale(1.1);
-    }
-    60% {
-      transform: scale(1);
-    }
-  }
-
-  .pro-watch-experience .vital-value {
-    font-size: 60px;
-    font-weight: 800;
-    color: #fff;
-    font-family: "JetBrains Mono";
-    line-height: 1;
-  }
-  .pro-watch-experience .vital-unit {
-    font-size: 14px;
-    font-weight: 800;
-    opacity: 0.5;
-    color: #fff;
-  }
-
-  .pro-watch-experience .media-card {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .pro-watch-experience .media-art {
-    width: 110px;
-    height: 110px;
-    background: linear-gradient(135deg, #333, #111);
-    border-radius: 22px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 48px;
-    margin-bottom: 20px;
-    border: 1px solid var(--glass-border);
-  }
-
-  .pro-watch-experience .m-title {
-    font-size: 18px;
-    font-weight: 800;
-    color: #fff;
-    text-align: center;
-  }
-  .pro-watch-experience .m-artist {
-    font-size: 13px;
-    opacity: 0.5;
-    color: #fff;
-    text-align: center;
-  }
-
-  .pro-watch-experience .media-controls {
-    display: flex;
-    align-items: center;
-    gap: 30px;
-    margin-top: 25px;
-    font-size: 24px;
-    color: #fff;
-  }
-
-  .pro-watch-experience .ctrl-play {
-    width: 0;
-    height: 0;
-    border-top: 12px solid transparent;
-    border-bottom: 12px solid transparent;
-    border-left: 20px solid #fff;
-    margin-left: 5px;
-  }
-
-  .pro-watch-experience .app-honeycomb {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 15px;
-    padding-top: 40px;
-  }
-
-  .pro-watch-experience .app-node {
-    width: 52px;
-    height: 52px;
-    background: #1c1c1e;
-    border-radius: 16px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 24px;
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-  }
-
-  .pro-watch-experience .page-indicator {
-    position: absolute;
-    bottom: 22px;
-    left: 0;
-    right: 0;
-    display: flex;
-    justify-content: center;
-    gap: 8px;
-    z-index: 110;
-  }
-
-  .pro-watch-experience .dot-btn {
-    width: 6px;
-    height: 6px;
-    background: rgba(255, 255, 255, 0.3);
-    border-radius: 50%;
-    cursor: pointer;
-    transition: 0.3s;
-  }
-
-  .pro-watch-experience #face1:checked ~ .watch-assembly .viewport-canvas {
-    transform: translateX(0);
-  }
-  .pro-watch-experience #face2:checked ~ .watch-assembly .viewport-canvas {
-    transform: translateX(-20%);
-  }
-  .pro-watch-experience #face3:checked ~ .watch-assembly .viewport-canvas {
-    transform: translateX(-40%);
-  }
-  .pro-watch-experience #face4:checked ~ .watch-assembly .viewport-canvas {
-    transform: translateX(-60%);
-  }
-  .pro-watch-experience #face5:checked ~ .watch-assembly .viewport-canvas {
-    transform: translateX(-80%);
-  }
-
-  .pro-watch-experience #face1:checked ~ .watch-assembly .b1 {
-    background: #a855f7;
-    width: 16px;
-    border-radius: 4px;
-  }
-
-  .pro-watch-experience #face2:checked ~ .watch-assembly .b2,
-  .pro-watch-experience #face3:checked ~ .watch-assembly .b3,
-  .pro-watch-experience #face4:checked ~ .watch-assembly .b4,
-  .pro-watch-experience #face5:checked ~ .watch-assembly .b5 {
-    background: #fff;
-    width: 16px;
-    border-radius: 4px;
-  }`;
+`;
 
 export default SmartWatch;
+

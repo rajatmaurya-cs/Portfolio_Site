@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect, useCallback, useRef } from "react";
+import React, { useState, useEffect, useCallback, useRef, memo } from "react";
 
 const strings = [
   "Software Engineer | Backend & Distributed Systems",
@@ -12,57 +12,34 @@ const strings = [
   "Strong in DSA and Problem Solving",
 ];
 
-/**
- * FlyingChar — renders a character at its real DOM position,
- * then on mount reads that exact position, teleports to the typewriter,
- * and smoothly transitions back to the natural spot.
- *
- * This avoids ALL canvas / font-metric estimation. We let the browser
- * lay out the character first and measure the truth.
- */
-function FlyingChar({ char, typewriterRef, isDeleting }) {
+const FlyingChar = memo(function FlyingChar({ char, originCoords }) {
   const ref = useRef(null);
 
   useEffect(() => {
     const el = ref.current;
-    if (!el || !typewriterRef?.current) return;
+    if (!el) return;
 
-    // ── 1. Character is rendered at its natural position. Read it. ──
-    const myRect = el.getBoundingClientRect();
-    const twRect = typewriterRef.current.getBoundingClientRect();
+    // If origin coords are provided, animate from typewriter origin
+    if (originCoords) {
+      const myRect = el.getBoundingClientRect();
+      const dx = originCoords.x - (myRect.left + myRect.width / 2);
+      const dy = originCoords.y - (myRect.top + myRect.height / 2);
 
-    // Paper exit point: the slot where paper pokes out of the typewriter.
-    // The printer CSS has .paper at left:24px, top:-26px inside a 1.6x scaled wrapper.
-    // At 1.6× scale:  left ≈ 38px from wrapper left,  top ≈ -42px from wrapper top.
-    // We point to the center-top of the paper card.
-    const originX = twRect.left + 38 + 20; // paper left + half paper width (40/2)
-    const originY = twRect.top - 10;        // just above the typewriter top (paper tip)
+      el.style.transform = `translate(${dx}px, ${dy}px) scale(0.3)`;
+      el.style.opacity = "0";
 
-    // Character center in viewport
-    const destX = myRect.left + myRect.width / 2;
-    const destY = myRect.top  + myRect.height / 2;
-
-    // Delta: how far from char's natural spot to the typewriter
-    const dx = originX - destX;
-    const dy = originY - destY;
-
-    // ── 2. Instantly jump to the typewriter origin (no transition yet). ──
-    el.style.transition = "none";
-    el.style.transform = `translate(${dx}px, ${dy}px) scale(0.3)`;
-    el.style.opacity = "0";
-
-    // ── 3. One frame later, enable transition and fly home. ──
-    requestAnimationFrame(() => {
-      requestAnimationFrame(() => {
+      const rafId = requestAnimationFrame(() => {
         el.style.transition =
-          "transform 0.5s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.15s ease 0.05s";
-        el.style.transform = "translate(0px, 0px) scale(1)";
+          "transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.15s ease 0.05s";
+        el.style.transform = "translate3d(0px, 0px, 0) scale(1)";
         el.style.opacity = "1";
       });
-    });
-  // Only run on mount — the char's natural position is its destination.
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+
+      return () => cancelAnimationFrame(rafId);
+    } else {
+      el.style.opacity = "1";
+    }
+  }, [originCoords]);
 
   return (
     <span
@@ -71,82 +48,96 @@ function FlyingChar({ char, typewriterRef, isDeleting }) {
         display: "inline-block",
         whiteSpace: "pre",
         willChange: "transform, opacity",
-        // Start invisible so there's no flicker before the useEffect fires
-        opacity: 0,
+        opacity: originCoords ? 0 : 1,
       }}
     >
       {char}
     </span>
   );
-}
+});
 
 /* ─── Main Type Component ─── */
 function Type({ typewriterRef }) {
   const [stringIndex, setStringIndex] = useState(0);
-  const [charIndex, setCharIndex]     = useState(0);
-  const [isDeleting, setIsDeleting]   = useState(false);
-  const [isPaused, setIsPaused]       = useState(false);
-  // chars: array of { id, char } objects
-  const [chars, setChars]             = useState([]);
+  const [charIndex, setCharIndex] = useState(0);
+  const [isDeleting, setIsDeleting] = useState(false);
+  const [isPaused, setIsPaused] = useState(false);
+  const [chars, setChars] = useState([]);
   const idRef = useRef(0);
+  const originRef = useRef(null);
 
   const currentString = strings[stringIndex];
+
+  // Update cached typewriter origin periodically or on string change
+  const updateOrigin = useCallback(() => {
+    if (typewriterRef?.current && typeof window !== "undefined") {
+      const isMobile = window.innerWidth < 640;
+      if (isMobile) {
+        originRef.current = null; // direct type on mobile for maximum battery & smoothness
+        return;
+      }
+      const twRect = typewriterRef.current.getBoundingClientRect();
+      originRef.current = {
+        x: twRect.left + 58,
+        y: twRect.top - 10,
+      };
+    }
+  }, [typewriterRef]);
+
+  useEffect(() => {
+    updateOrigin();
+    window.addEventListener("resize", updateOrigin, { passive: true });
+    return () => window.removeEventListener("resize", updateOrigin);
+  }, [updateOrigin]);
 
   const tick = useCallback(() => {
     if (isPaused) return;
 
     if (!isDeleting) {
-      // ── Typing forward ──
       if (charIndex < currentString.length) {
         const newChar = currentString[charIndex];
         const id = idRef.current++;
         setChars((prev) => [...prev, { id, char: newChar }]);
         setCharIndex((prev) => prev + 1);
       } else {
-        // Finished — pause before deleting
         setIsPaused(true);
         setTimeout(() => {
           setIsPaused(false);
           setIsDeleting(true);
-        }, 2000);
+        }, 2200);
       }
     } else {
-      // ── Deleting ──
       if (charIndex > 0) {
         setChars((prev) => prev.slice(0, -1));
         setCharIndex((prev) => prev - 1);
       } else {
-        // Done deleting — next string
         setChars([]);
         setIsDeleting(false);
         setStringIndex((prev) => (prev + 1) % strings.length);
         setIsPaused(true);
-        setTimeout(() => setIsPaused(false), 500);
+        setTimeout(() => {
+          updateOrigin();
+          setIsPaused(false);
+        }, 400);
       }
     }
-  }, [charIndex, isDeleting, isPaused, currentString]);
+  }, [charIndex, isDeleting, isPaused, currentString, updateOrigin]);
 
   useEffect(() => {
     if (isPaused) return;
-    const speed = isDeleting ? 35 : 65;
+    const speed = isDeleting ? 30 : 60;
     const timer = setTimeout(tick, speed);
     return () => clearTimeout(timer);
   }, [tick, isPaused, isDeleting]);
 
   return (
     <div className="relative h-[120px] sm:h-[140px] md:h-[180px] w-full">
-      {/*
-        Rendered text. Characters flow naturally so the browser
-        handles all layout / wrapping. FlyingChar reads its own
-        position post-render and then teleports to the typewriter.
-      */}
       <span className="text-[1.4em] font-medium text-[#be6adf] md:text-[2.2em] md:font-semibold">
         {chars.map(({ id, char }) => (
           <FlyingChar
             key={id}
             char={char}
-            typewriterRef={typewriterRef}
-            isDeleting={isDeleting}
+            originCoords={originRef.current}
           />
         ))}
 
@@ -156,7 +147,7 @@ function Type({ typewriterRef }) {
           style={{
             animation: "blink-cursor 0.75s step-end infinite",
             boxShadow:
-              "0 0 8px rgba(205,95,248,0.6), 0 0 16px rgba(205,95,248,0.3)",
+              "0 0 8px rgba(205,95,248,0.6)",
           }}
         />
       </span>
@@ -171,4 +162,5 @@ function Type({ typewriterRef }) {
   );
 }
 
-export default Type;
+export default memo(Type);
+

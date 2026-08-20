@@ -49,14 +49,9 @@ function Home() {
             </div>
 
             <div className="pb-5 md:col-span-5">
-              {/* <img
-                src={homeLogo}
-                alt="home pic"
-                className="mx-auto h-auto max-h-[450px] w-full"
-              /> */}
               <div className="mx-auto flex min-h-[400px] w-full max-w-[520px] items-center justify-center sm:min-h-[450px] md:min-h-[500px] lg:min-h-[560px]">
                 <div className="relative">
-                  <div className="absolute inset-0 bg-[#c770f0] opacity-20 blur-[100px] rounded-full pointer-events-none"></div>
+                  <div className="absolute inset-0 bg-[radial-gradient(circle,rgba(199,112,240,0.25)_0%,transparent_70%)] rounded-full pointer-events-none transform translate-z-0"></div>
                   <div className="relative z-10 scale-90 origin-center transition-transform duration-300 hover:scale-95">
                     <SmartWatch />
                   </div>
@@ -70,7 +65,7 @@ function Home() {
       {/* TICKET TOUR SECTION */}
       <div className="relative pt-2 pb-16 px-4">
         {/* Ambient glow */}
-        <div style={{ position: "absolute", top: "20%", right: "15%", width: "250px", height: "250px", borderRadius: "50%", background: "radial-gradient(circle, rgba(199,112,240,0.1) 0%, transparent 70%)", filter: "blur(40px)", pointerEvents: "none" }} />
+        <div style={{ position: "absolute", top: "20%", right: "15%", width: "250px", height: "250px", borderRadius: "50%", background: "radial-gradient(circle, rgba(199,112,240,0.12) 0%, rgba(199,112,240,0.04) 45%, transparent 70%)", transform: "translateZ(0)", pointerEvents: "none" }} />
 
         <div className="relative mx-auto max-w-2xl text-center">
 
@@ -102,8 +97,8 @@ function Home() {
       {/* CONTACT SECTION */}
       <div className="relative overflow-hidden py-20 px-4">
         {/* Ambient glow orbs */}
-        <div style={{ position: "absolute", top: "10%", left: "10%", width: "300px", height: "300px", borderRadius: "50%", background: "radial-gradient(circle, rgba(205,95,248,0.15) 0%, transparent 70%)", filter: "blur(50px)", pointerEvents: "none" }} />
-        <div style={{ position: "absolute", bottom: "10%", right: "10%", width: "300px", height: "300px", borderRadius: "50%", background: "radial-gradient(circle, rgba(123,47,255,0.12) 0%, transparent 70%)", filter: "blur(50px)", pointerEvents: "none" }} />
+        <div style={{ position: "absolute", top: "10%", left: "10%", width: "300px", height: "300px", borderRadius: "50%", background: "radial-gradient(circle, rgba(205,95,248,0.16) 0%, rgba(205,95,248,0.05) 50%, transparent 70%)", transform: "translateZ(0)", pointerEvents: "none" }} />
+        <div style={{ position: "absolute", bottom: "10%", right: "10%", width: "300px", height: "300px", borderRadius: "50%", background: "radial-gradient(circle, rgba(123,47,255,0.14) 0%, rgba(123,47,255,0.04) 50%, transparent 70%)", transform: "translateZ(0)", pointerEvents: "none" }} />
 
         {/* Decorative grid */}
         <div style={{ position: "absolute", inset: 0, backgroundImage: "linear-gradient(rgba(205,95,248,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(205,95,248,0.04) 1px, transparent 1px)", backgroundSize: "60px 60px", pointerEvents: "none" }} />
