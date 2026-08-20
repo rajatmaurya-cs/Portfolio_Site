@@ -72,7 +72,6 @@ const StyledWrapper = styled.div`
     position: relative;
     height: 300px;
     width: 230px;
-    contain: layout paint;
   }
 
   .card .boxshadow {

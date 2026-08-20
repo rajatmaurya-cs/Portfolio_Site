@@ -21,7 +21,6 @@ const StyledWrapper = styled.div`
     align-items: center;
     gap: 15px;
     margin-left: 10px;
-    contain: layout paint;
   }
 
   .dot-two {

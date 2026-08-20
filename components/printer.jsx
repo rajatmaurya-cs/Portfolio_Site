@@ -16,12 +16,12 @@ const Loader = () => {
 }
 
 const StyledWrapper = styled.div`
-  contain: layout paint;
   .printer-scale-wrapper {
     transform: scale(1.6) translateZ(0);
     transform-origin: left top;
     display: inline-block;
     margin-bottom: 35px; /* offset the scaled-up height */
+    margin-right: 70px;  /* offset the scaled-up width */
     will-change: transform;
   }
 
