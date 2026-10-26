@@ -7,7 +7,6 @@ import SmartWatch from "../../../components/SamrtWatch";
 import Contact from "../../../components/contact.jsx";
 
 import Loader from "../../../components/cat.jsx";
-import PrinterAnimation from "../../../components/printer.jsx";
 import TicketMachine from "../../../components/TicketMachine.jsx";
 
 import { AiFillGithub } from "react-icons/ai";
@@ -16,7 +15,6 @@ import { MdEmail } from "react-icons/md";
 
 
 function Home() {
-  const typewriterRef = useRef(null);
   return (
     <section>
       {/* HERO SECTION */}
@@ -39,12 +37,7 @@ function Home() {
               </h1>
 
               <div className="p-4 text-left sm:p-[50px]">
-                <Type typewriterRef={typewriterRef} />
-                <div className="mt-8 flex justify-start">
-                  <div ref={typewriterRef}>
-                    <PrinterAnimation />
-                  </div>
-                </div>
+                <Type />
               </div>
             </div>
 
