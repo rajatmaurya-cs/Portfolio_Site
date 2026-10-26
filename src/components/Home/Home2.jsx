@@ -41,7 +41,7 @@ function Home2() {
                 {" "}
                 secure authentication systems, optimized data fetching,
                 production-grade backend architectures, automated testing, and
-                CI/CD pipelines using GitHub Actions.
+                CI/CD deployment pipelines.
               </b>
             </i>
             <br />

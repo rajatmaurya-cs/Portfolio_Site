@@ -5,6 +5,7 @@ import Techstack from "./Techstack";
 import Aboutcard from "./AboutCard";
 import laptopImg from "../../Assets/about.png";
 import Toolstack from "./Toolstack";
+import TechBentoMatrix from "./TechBentoMatrix";
 
 function About() {
   return (
@@ -24,6 +25,7 @@ function About() {
             </div>
           </div>
 
+          {/* Dual Orbital Planetary HUDs */}
           <div className="flex flex-wrap items-start justify-center gap-6 xl:flex-nowrap">
             <div className="flex min-w-0 flex-1 flex-col items-center">
               <h1 className="pb-[10px] pt-[10px] text-[2.3em] font-medium text-white">
@@ -39,6 +41,9 @@ function About() {
               <Toolstack />
             </div>
           </div>
+
+          {/* Option 2: The Stripe / Vercel Modern Bento Matrix */}
+          <TechBentoMatrix />
         </div>
       </div>
     </>

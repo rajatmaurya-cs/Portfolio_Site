@@ -25,19 +25,19 @@ function ProjectCards(props) {
       />
 
       {/* Image area */}
-      <div className="relative overflow-hidden m-4 rounded-xl bg-black/20">
+      <div className="relative overflow-hidden m-4 rounded-xl bg-black/40 border border-white/5">
         <img
           src={props.imgPath?.src || props.imgPath}
           alt={props.title}
           className={`w-full aspect-video object-cover rounded-xl transition-all duration-500 ${
-            hovered ? "scale-105 opacity-100" : "scale-100 opacity-75"
+            hovered ? "scale-105 opacity-100" : "scale-100 opacity-95"
           }`}
         />
-        {/* Overlay gradient on image */}
-        <div className="absolute inset-0 bg-gradient-to-t from-[#0a0616]/80 to-transparent rounded-xl" />
+        {/* Subtle vignette on image */}
+        <div className="absolute inset-0 bg-gradient-to-t from-[#0a0616]/40 via-transparent to-transparent rounded-xl pointer-events-none" />
 
         {/* Type badge */}
-        <span className="absolute top-[10px] right-[10px] px-2.5 py-1 rounded-full bg-[#c770f0]/20 border border-[#c770f0]/50 text-[0.68em] tracking-widest uppercase text-[#c770f0] backdrop-blur-sm">
+        <span className="absolute top-[10px] right-[10px] px-2.5 py-1 rounded-full bg-[#0a0616]/70 border border-[#c770f0]/60 text-[0.68em] font-semibold tracking-widest uppercase text-[#c770f0] backdrop-blur-md shadow-sm">
           {props.isBlog ? "Blog" : "Project"}
         </span>
       </div>

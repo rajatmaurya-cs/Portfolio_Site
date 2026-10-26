@@ -4,10 +4,11 @@ import React, { useState, useEffect, useCallback, useRef, memo } from "react";
 const strings = [
   "Software Engineer | Backend & Distributed Systems",
   "Building Scalable Backend Infrastructure",
+  "Architect of HYDRA - Reliable Webhook Platform",
   "Creator of Veyra - Home For Modern Creator",
   "Express.js • PostgreSQL • Redis • Kafka",
   "Next.js • React.js • React Query",
-  "Docker • AWS • GitHub Actions • CI/CD",
+  "Docker • AWS Cloud • Microservices • CI/CD",
   "REST APIs • Testing • Performance • Reliability",
   "Strong in DSA and Problem Solving",
 ];

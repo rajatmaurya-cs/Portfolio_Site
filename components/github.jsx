@@ -103,9 +103,8 @@ const Card = () => {
                     </svg>
                   </div>
                   <div className="pr-text">
-                    {/* <div className="pr-title">Feature request: Document analysis</div> */}
-                    <a href="https://veyra-creator-platform.vercel.app/Home">Veyra-creator-platform</a>
-                    <div className="pr-desc">#5054 opened 1 minute ago by rajatmaurya-cs</div>
+                    <a href="https://github.com/rajatmaurya-cs/HYDRA">HYDRA</a>
+                    <div className="pr-desc">#1024 opened 2 minutes ago by rajatmaurya-cs</div>
                   </div>
                 </div>
                 <div className="pr">
@@ -119,8 +118,8 @@ const Card = () => {
                     </svg>
                   </div>
                   <div className="pr-text">
-                    <a href="https://github.com/rajatmaurya-cs/NoteFlow">NoteFlow</a>
-                    <div className="pr-desc">#5038 opened 3 hours ago by gaylord</div>
+                    <a href="https://veyra-creator-platform.vercel.app/Home">Veyra-creator-platform</a>
+                    <div className="pr-desc">#5054 opened 1 hour ago by rajatmaurya-cs</div>
                   </div>
                 </div>
 
