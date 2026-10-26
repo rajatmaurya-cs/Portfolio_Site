@@ -18,10 +18,11 @@ const TicketMachine = () => {
 
     setTimeout(() => {
       if (machineRef.current) {
-        // Scroll so the top of the ticket machine is safely below the navbar
-        // This ensures the ticket is fully visible but we don't scroll so far down 
-        // that the next section ("Let me introduce myself") appears.
-        const y = machineRef.current.getBoundingClientRect().top + window.pageYOffset - 120;
+        // Scroll so the entire ticket (including bottom message) fits comfortably in the viewport below the navbar
+        const rect = machineRef.current.getBoundingClientRect();
+        const windowHeight = window.innerHeight;
+        const targetOffset = Math.max(75, (windowHeight - 480) / 2);
+        const y = rect.top + window.pageYOffset - targetOffset;
         window.scrollTo({ top: y, behavior: 'smooth' });
       }
     }, 2800);
@@ -191,15 +192,15 @@ const spinSymbol = keyframes`
 const printAndPop = keyframes`
   0% {
     transform: translateY(-100%);
-    clip-path: inset(100% -20% 0% -20%);
+    clip-path: inset(100% -20% -20% -20%);
   }
   50% {
     transform: translateY(0%);
-    clip-path: inset(0% -20% 0% -20%);
+    clip-path: inset(0% -20% -20% -20%);
   }
   100% {
     transform: translateY(0%);
-    clip-path: inset(0% -20% 0% -20%);
+    clip-path: none;
   }
 `;
 
@@ -522,11 +523,11 @@ const StyledWrapper = styled.div`
     margin: 0 auto;
     display: flex;
     flex-direction: column;
-    padding: 16px;
+    padding: 16px 18px 26px 18px;
     background-color: #171717;
     color: rgba(255,255,255,0.85);
     font-family: "Azeret Mono", "Roboto Mono", monospace;
-    font-size: 0.85em;
+    font-size: 0.82em;
     font-weight: bold;
     border-radius: 20px;
     overflow: hidden;
@@ -655,15 +656,14 @@ const StyledWrapper = styled.div`
   .receipt-inner {
     position: relative;
     z-index: 10;
-    margin-top: 70px; /* Space for the astronaut */
+    margin-top: 50px; /* Space for the astronaut */
     display: flex;
     flex-direction: column;
-    gap: 1em;
+    gap: 0.65em;
   }
 
   .receipt-header,
-  .receipt-subheader,
-  .receipt-message {
+  .receipt-subheader {
     display: flex;
     justify-content: space-between;
     padding: 0.2em 0;
@@ -687,18 +687,23 @@ const StyledWrapper = styled.div`
     display: block;
   }
   .receipt-message {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     justify-content: center;
     text-align: center;
-    padding: 0.5em 1em;
+    padding: 0.4em 0.8em 0.2em;
+    margin-bottom: 4px;
     color: #cd5ff8;
-    font-size: 0.9em;
+    font-size: 0.88em;
+    line-height: 1.5;
   }
 
   .receipt-subtotal td {
     border-top: 1px dashed rgba(199,112,240,0.25);
     color: #cd5ff8;
     text-align: center !important;
-    padding-top: 0.5em;
+    padding-top: 0.4em;
     font-weight: 600;
   }
 
@@ -707,16 +712,16 @@ const StyledWrapper = styled.div`
     font: inherit;
     color: inherit;
     text-align: left;
-    line-height: 1.8em;
+    line-height: 1.5em;
 
     th {
       color: #cd5ff8;
       font-weight: 600;
-      padding-bottom: 0.5em;
+      padding-bottom: 0.35em;
     }
 
     td {
-      padding: 0.35em 0;
+      padding: 0.22em 0;
     }
 
     th:last-child,
