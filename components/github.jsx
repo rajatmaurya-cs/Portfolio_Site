@@ -118,7 +118,7 @@ const Card = () => {
                     </svg>
                   </div>
                   <div className="pr-text">
-                    <a href="https://veyra-creator-platform.vercel.app/Home">Veyra-creator-platform</a>
+                    <a href="https://veyra-creator-platform.vercel.app/Home">Veyra</a>
                     <div className="pr-desc">#5054 opened 1 hour ago by rajatmaurya-cs</div>
                   </div>
                 </div>
