@@ -103,7 +103,7 @@ function Projects() {
                       <Code2 size={15} />
                     </span>
                     <span>
-                      <strong className="text-white font-medium">Tech Stack:</strong> TypeScript, Node.js, Express, PostgreSQL, Prisma ORM, Apache Kafka, Redis, BullMQ, Next.js 16.
+                      <strong className="text-white font-medium">Tech Stack:</strong> TypeScript, Node.js, Express, PostgreSQL, Prisma ORM, Apache Kafka, Redis, BullMQ, Next.js.
                     </span>
                   </li>
                 </ul>

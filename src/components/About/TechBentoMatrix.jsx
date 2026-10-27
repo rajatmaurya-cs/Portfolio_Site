@@ -87,7 +87,7 @@ const bentoCategories = [
   {
     id: "frontend",
     title: "Frontend Engineering",
-    badge: "MODERN UI & REACT 19",
+    badge: "MODERN UI & REACT",
     icon: <Layout className="text-[#c770f0]" size={22} />,
     themeColor: "#c770f0",
     themeBg: "rgba(199, 112, 240, 0.08)",
@@ -101,14 +101,14 @@ const bentoCategories = [
     ],
     technologies: [
       {
-        name: "Next.js 16",
+        name: "Next.js",
         icon: <SiNextdotjs />,
         color: "#ffffff",
         role: "Full-Stack Web",
         desc: "App Router, SSR & Edge middleware",
       },
       {
-        name: "React 19",
+        name: "React",
         icon: <FaReact />,
         color: "#61dafb",
         role: "UI Architecture",
@@ -342,17 +342,9 @@ function TechBentoMatrix() {
     <section className="relative w-full pt-16 pb-12">
       {/* Section Header */}
       <div className="mx-auto max-w-4xl text-center mb-10 px-4">
-        <div className="inline-flex items-center gap-2 rounded-full border border-[#c770f0]/30 bg-[#c770f0]/10 px-3.5 py-1 text-[0.72rem] font-bold tracking-widest text-[#c770f0] uppercase mb-3">
-          <Server size={13} />
-          <span>PRODUCTION-GRADE ARCHITECTURE</span>
-        </div>
-
         <h2 className="text-[2.2em] md:text-[2.6em] font-bold text-white tracking-tight">
           Technical <strong className="text-[#c770f0]">Proficiency Matrix</strong>
         </h2>
-        <p className="text-[0.98rem] text-white/70 max-w-2xl mx-auto mt-2 leading-relaxed">
-          Structured architectural breakdown of production-tested event streaming, relational &amp; document databases, modern frontend engines, and automated cloud deployments.
-        </p>
       </div>
 
       {/* 2x2 High-End Bento Grid */}

@@ -44,7 +44,7 @@ const outerSkills = [
   { icon: <FaNodeJs />,     color: "#3c873a", name: "Node.js",     tag: "RUNTIME",    desc: "Asynchronous, event-driven JavaScript backend runtime." },
   { icon: <SiExpress />,    color: "#e0e0e0", name: "Express.js",  tag: "FRAMEWORK",  desc: "Lightweight REST API routing & middleware pipeline." },
   { icon: <FaReact />,      color: "#61dafb", name: "React",       tag: "UI LIBRARY", desc: "Declarative, component-driven client architecture." },
-  { icon: <SiNextdotjs />,  color: "#ffffff", name: "Next.js 16",  tag: "FULL-STACK", desc: "App Router, Server Components & edge optimization." },
+  { icon: <SiNextdotjs />,  color: "#ffffff", name: "Next.js",     tag: "FULL-STACK", desc: "App Router, Server Components & edge optimization." },
   { icon: <SiBootstrap />,  color: "#7952b3", name: "Bootstrap",   tag: "UI TOOLKIT", desc: "Responsive component framework & utility grids." },
   { icon: <SiJest />,       color: "#c21325", name: "Jest Testing",tag: "QA / TESTING",desc: "Unit, integration & assertion test suites." },
 ];
